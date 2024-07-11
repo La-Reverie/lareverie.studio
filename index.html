@@ -6,12 +6,51 @@
   <style>
     body {
       height: 100vh;
-      background: linear-gradient(to bottom,  #87ceeb 0%,#ffd700 70%,#ff00ff 100%);
+      background: #000;
     }
+
+    #vanishDiv {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(20, 56, 68);
+            text-align: center;
+            color: #fff;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 2rem;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            position: fixed;
+            top:0;
+            left:0;
+            z-index: 0;
+        }
   </style>
 </head>
 <body>
   <h1>La Reverie</h1>
-  <p>Soon, friends.</p>
+
+  <div id="vanishDiv">La Reverie</div>
+  
+
+  <iframe src='https://my.spline.design/littleprince-ef744648dbc90dbde2d4b50a65b048a9/' frameborder='0' width='100%' height='100%'></iframe>
+
+  <script>
+    setTimeout(function() {
+        var div = document.getElementById('vanishDiv');
+        div.style.transition = 'opacity 1s';
+        div.style.opacity = '0';
+        setTimeout(function() {
+            div.style.display = 'none';
+        }, 1000); 
+    }, 12000); 
+</script>
 </body>
 </html>
