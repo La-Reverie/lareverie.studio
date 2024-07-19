@@ -1,55 +1,20 @@
-<!doctype html>
-<html lang=en>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset=utf-8>
-  <title>La Reverie Studio</title>
-  <style>
-    body {
-      height: 100vh;
-      background: rgb(34, 9, 65);
-    }
-
-    #vanishDiv {
-            width: 100vw;
-            height: 100vh;
-            background-color: rgb(147, 6, 137);
-            text-align: center;
-            color: #fff;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 2rem;
-            z-index: 10;
-            top: 0;
-            left: 0;
-            position: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        iframe {
-            position: fixed;
-            top:0;
-            left:0;
-            z-index: 0;
-        }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Prince Planet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div id="vanishDiv">La Reverie</div>
-  
-
-  <iframe src='https://my.spline.design/littleprince-ef744648dbc90dbde2d4b50a65b048a9/' frameborder='0' width='100%' height='100%'></iframe>
-
-  <script>
-    setTimeout(function() {
-        var div = document.getElementById('vanishDiv');
-        div.style.transition = 'opacity 1s';
-        div.style.opacity = '0';
-        setTimeout(function() {
-            div.style.display = 'none';
-        }, 1000); 
-    }, 9000); 
-</script>
+    <div id="fadein"></div>
+    <div id="customLoadingScreen"><h1 class="dancing-script-h1" id="loadingText">La Reverie Studio</h1></div>
+    <canvas id="renderCanvas"></canvas>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
