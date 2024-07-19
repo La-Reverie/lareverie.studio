@@ -44,6 +44,7 @@ body, html {
 }
 .dancing-script-h1 {
     font-family: "Dancing Script", cursive;
+    visibility: hidden;
     opacity: 0;
     animation: fadeInText 2s forwards, stayVisible 2s 2s forwards, fadeOutText 2s 4s forwards;
 }

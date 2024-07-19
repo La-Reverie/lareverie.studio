@@ -1,3 +1,7 @@
+document.fonts.ready.then(function () {
+    document.getElementById("loadingText").style.visibility = "visible";
+});
+
 class CustomLoadingScreen {
     constructor(loadingUIText) {
         this.loadingUIText = loadingUIText;
