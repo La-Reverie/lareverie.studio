@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Reverie Studio</title>
+    <!-- Otras etiquetas del head -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6" id="navbar">
+      <div class="flex items-center flex-shrink-0 text-black mr-6">
+        <a href="index.html">La Reverie Studio</a>
+      </div>
+      <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        </button>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+          <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            About
+          </a>
+          <a href="portfolio.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            Portfolio
+          </a>
+          <a href="contact.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+            Contact
+          </a>
+        </div>
+      </div>
+    </nav>
+    <h1>About Us</h1>
+    <!-- Botón para mostrar el modal -->
+    <button id="openModalBtn" class="z-50 fixed bottom-10 right-10 bg-purple-500 text-white p-4 rounded-full shadow-lg hover:bg--700 duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+        </svg>
+    </button>
+
+    <!-- Modal -->
+    <div id="modalOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div id="modalContent" class="bg-white p-8 rounded-lg shadow-lg transform scale-110 opacity-0 transition duration-300 w-96 h-96 md:w-1/2 md:h-1/2 flex flex-col items-center justify-center text-center">
+          <h2 class="dancing-script-h2 text-black" id="loadingText">La Reverie Studio</h2>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+      </div>
+  </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

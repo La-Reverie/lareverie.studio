@@ -50,6 +50,10 @@ body, html {
     opacity: 0;
 }
 
+#modalContent{
+    opacity: 0.8
+}
+
 #openModalBtn:hover {
     transform: scale(1.1);
 }
@@ -70,7 +74,9 @@ body, html {
     font-size: 3rem;
 }
 
-
+.navbar{
+    background: transparent;
+}
 
 .dancing-script-h1 {
     font-family: "Dancing Script", cursive;
