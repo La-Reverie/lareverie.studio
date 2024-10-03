@@ -1,7 +1,7 @@
 {
   "name": "la-reverie-studio-react",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@splinetool/react-spline": "^4.0.0",
     "@splinetool/runtime": "^1.9.28",
