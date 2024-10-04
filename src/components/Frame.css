@@ -6,9 +6,7 @@
   z-index: 4;
   background-color: transparent;
   margin: 0 8px;
-  border-left: 1px solid grey;
-
-  border-left: 2px solid transparent;
+  border-left: 2px solid #ffff;
     border-image: linear-gradient(to bottom, rgb(128, 0, 85), rgb(144, 146, 238), rgb(242, 255, 0)) 1 100%;
     border-image-slice: 1;
 }
