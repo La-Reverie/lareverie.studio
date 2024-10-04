@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/La-Reverie.github.io/static/css/main.01cefa58.css",
-    "main.js": "/La-Reverie.github.io/static/js/main.c3151375.js",
+    "main.css": "/La-Reverie.github.io/static/css/main.f0156766.css",
+    "main.js": "/La-Reverie.github.io/static/js/main.322f76ed.js",
     "static/js/208.3447b118.chunk.js": "/La-Reverie.github.io/static/js/208.3447b118.chunk.js",
     "static/js/293.7acffed5.chunk.js": "/La-Reverie.github.io/static/js/293.7acffed5.chunk.js",
     "static/js/917.60762bdd.chunk.js": "/La-Reverie.github.io/static/js/917.60762bdd.chunk.js",
     "static/js/516.5920f8d0.chunk.js": "/La-Reverie.github.io/static/js/516.5920f8d0.chunk.js",
     "static/js/519.e0180698.chunk.js": "/La-Reverie.github.io/static/js/519.e0180698.chunk.js",
-    "static/js/946.38711b65.chunk.js": "/La-Reverie.github.io/static/js/946.38711b65.chunk.js",
+    "static/js/946.087d89e1.chunk.js": "/La-Reverie.github.io/static/js/946.087d89e1.chunk.js",
     "static/js/160.c6d14730.chunk.js": "/La-Reverie.github.io/static/js/160.c6d14730.chunk.js",
     "static/js/23.c84a22dc.chunk.js": "/La-Reverie.github.io/static/js/23.c84a22dc.chunk.js",
     "static/js/453.e5a31f2e.chunk.js": "/La-Reverie.github.io/static/js/453.e5a31f2e.chunk.js",
@@ -16,20 +16,20 @@
     "static/media/javier-cabrera.jpg": "/La-Reverie.github.io/static/media/javier-cabrera.35164ba132d897155689.jpg",
     "index.html": "/La-Reverie.github.io/index.html",
     "static/media/quote.svg": "/La-Reverie.github.io/static/media/quote.96cbda1dbfbb59aa3ee044858f7d781e.svg",
-    "main.01cefa58.css.map": "/La-Reverie.github.io/static/css/main.01cefa58.css.map",
-    "main.c3151375.js.map": "/La-Reverie.github.io/static/js/main.c3151375.js.map",
+    "main.f0156766.css.map": "/La-Reverie.github.io/static/css/main.f0156766.css.map",
+    "main.322f76ed.js.map": "/La-Reverie.github.io/static/js/main.322f76ed.js.map",
     "208.3447b118.chunk.js.map": "/La-Reverie.github.io/static/js/208.3447b118.chunk.js.map",
     "293.7acffed5.chunk.js.map": "/La-Reverie.github.io/static/js/293.7acffed5.chunk.js.map",
     "917.60762bdd.chunk.js.map": "/La-Reverie.github.io/static/js/917.60762bdd.chunk.js.map",
     "516.5920f8d0.chunk.js.map": "/La-Reverie.github.io/static/js/516.5920f8d0.chunk.js.map",
     "519.e0180698.chunk.js.map": "/La-Reverie.github.io/static/js/519.e0180698.chunk.js.map",
-    "946.38711b65.chunk.js.map": "/La-Reverie.github.io/static/js/946.38711b65.chunk.js.map",
+    "946.087d89e1.chunk.js.map": "/La-Reverie.github.io/static/js/946.087d89e1.chunk.js.map",
     "160.c6d14730.chunk.js.map": "/La-Reverie.github.io/static/js/160.c6d14730.chunk.js.map",
     "23.c84a22dc.chunk.js.map": "/La-Reverie.github.io/static/js/23.c84a22dc.chunk.js.map",
     "453.e5a31f2e.chunk.js.map": "/La-Reverie.github.io/static/js/453.e5a31f2e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.01cefa58.css",
-    "static/js/main.c3151375.js"
+    "static/css/main.f0156766.css",
+    "static/js/main.322f76ed.js"
   ]
 }
