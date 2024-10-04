@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Frame from './components/Frame';
 import Hero from './components/Hero';
+import ScrollIndicator from './components/ScrollIndicator';
 import About from './components/About';
 import Expertise from './components/Expertise';
 import Team from './components/Team';
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <Frame />
       <Hero />
+      <ScrollIndicator />
       <About />
       <Expertise />
       <Team />
