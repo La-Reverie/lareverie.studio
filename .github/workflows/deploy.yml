@@ -39,11 +39,11 @@ jobs:
           source: "build/"  # Ajusta según el directorio de tu build
           target: "/var/www/lareverie/"
 
-      # (Opcional) Paso 6: Reiniciar el servidor o realizar otras acciones
+      # Paso 6: Reiniciar Nginx en el VPS
       - name: Restart Nginx
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: ${{ secrets.DEPLOY_SITE}}
+          host: ${{ secrets.DEPLOY_SITE }}
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
