@@ -1,6 +1,6 @@
 
 # lareverie.studio-react
-Fleshed out version of lareverie.studio
+Fleshed out version of lareverie.studio 
 
 # Getting Started with Create React App
 
