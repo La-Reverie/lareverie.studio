@@ -6,44 +6,32 @@ on:
       - vps
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout del código
-      - name: Checkout repository
+      # Paso 1: Checkout de la rama vps
+      - name: Checkout vps branch
         uses: actions/checkout@v3
-
-      # Paso 2: Configurar Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Ajusta según la versión que uses
+          ref: vps
 
-      # Paso 3: Instalar dependencias
-      - name: Install dependencies
-        run: npm install
-
-      # Paso 4: Ejecutar build
-      - name: Build project
-        run: npm run build
-
-      # Paso 5: Desplegar al VPS usando SSH
+      # Paso 2: Desplegar al VPS usando SCP
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.5
         with:
-          host: ${{ secrets.DEPLOY_SITE }}
+          host: 31.220.108.234
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          source: "build/"  # Ajusta según el directorio de tu build
+          source: "."  # En la rama vps, el contenido de build está en el root
           target: "/var/www/lareverie/"
 
-      # Paso 6: Reiniciar Nginx en el VPS
+      # Paso 3: Reiniciar Nginx en el VPS
       - name: Restart Nginx
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: ${{ secrets.DEPLOY_SITE }}
+          host: 31.220.108.234
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
