@@ -3,6 +3,7 @@ import './Team.css';
 import caveman from '../images/team/caveman.jpg';
 import javier from '../images/team/javier-cabrera.jpg';
 import jonglass from '../images/team/jon-glass.jpg';
+import bhaskar from '../images/team/bhaskar.jpg';
 import quote from '../images/quote.svg';
 
 function Team() {
@@ -37,7 +38,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={javier} alt='Javier Cabrera' />
             <div className='bio'>
-            Javier Cabrera lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            With a multifaceted background in writing, illustration, and web development, Javier combines his artistic vision with technical proficiency to lead innovative design projects. He is also a published author and illustrator, creating visually compelling stories that reflect his passion for creative expression. You can explore his personal work at <a href="https://javiercabrerabooks.com" target='_blank'>javiercabrerabooks.com</a>. At La Reverie Studio, Javier spearheads development and design initiatives, delivering exceptional digital experiences.
               <div className='blockquote'>
                 <img className='icon-quote' width={15} src={quote} />
                 Stories are bridges to worlds.
@@ -52,12 +53,22 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={jonglass} alt='Jon Glass' />
             <div className='bio'>
-              Jon Glass lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Jon Glass is a founding engineer at La Reverie Studio LLC. His eclectic  career spans professional skateboarding, skate photography, painting, and software engineering, giving him a truly unique perspective on creativity and technology. Jon's diverse skill set allows him to approach development with an artistic sensibility and a keen eye for detail. You can explore his creative projects on <a href="https://instagram.com/jonglasss" target='_blank'>Instagram</a> and his technical work on <a href="https://github.com/jonglass82" target='_blank'>GitHub</a>.
               <div className='blockquote'>
                 <img className='icon-quote' width={15} src={quote} />
                 🔥
                 <img className='icon-quote rotate' width={15} src={quote} />
               </div>
+            </div>
+          </div>
+        </article>
+
+        <article className="text-black text-base font-normal leading-normal pb-10 pt-1">
+          <h3 className='standout-05'>Bhaskar Ch | Product Management</h3>
+          <div className='flex'>
+            <img className='team-member' src={bhaskar} alt='Bhaskar Ch' />
+            <div className='bio'>
+              Bhaskar is a Business Analyst turned Product Manager with an MBA from Wayne State University. He is adept at aligning business objectives with technical execution, levering his analytical skills to drive impactful product strategies. Bhaskar's expertise lies in transforming complex business requirements into actionable roadmaps for product development. You can connect with him on <a href="https://www.linkedin.com/in/bchitraju/" target='_blank'>LinkedIn</a>.
             </div>
           </div>
         </article>
