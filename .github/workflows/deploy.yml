@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.5
         with:
-          host: your.vps.ip.address
+          host: ${{ secrets.DEPLOY_SITE }}
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
@@ -43,7 +43,7 @@ jobs:
       - name: Restart Nginx
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: your.vps.ip.address
+          host: ${{ secrets.DEPLOY_SITE }}
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
