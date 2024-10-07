@@ -3,35 +3,47 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - vps
+      - master  # Change this to your main development branch
 
 jobs:
-  deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout de la rama vps
-      - name: Checkout vps branch
+      # Step 1: Checkout the code
+      - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          ref: vps
 
-      # Paso 2: Desplegar al VPS usando SCP
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'  # Replace with your Node.js version
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the app
+      - name: Build the app
+        run: npm run build
+
+      # Step 5: Deploy to VPS using SCP
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.5
         with:
-          host: 31.220.108.234
+          host: your.vps.ip.address
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          source: "."  # En la rama vps, el contenido de build está en el root
+          source: "./build/*"
           target: "/var/www/lareverie/"
 
-      # Paso 3: Reiniciar Nginx en el VPS
+      # Step 6: Restart Nginx on the VPS
       - name: Restart Nginx
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: 31.220.108.234
+          host: your.vps.ip.address
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
