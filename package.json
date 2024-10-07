@@ -15,7 +15,7 @@
   },
 "scripts": {
   "start": "react-scripts start",
-  "build": "react-scripts build",
+  "build": "CI=false react-scripts build",
   "test": "react-scripts test",
   "eject": "react-scripts eject"
 },
@@ -38,7 +38,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.5"
   },
   "homepage": "https://la-reverie.github.io/"
 }
