@@ -25,13 +25,13 @@ jobs:
         run: npm run build
 
       - name: Deploy to VPS
-        uses: appleboy/scp-action@v0.1.7  # Actualiza a la última versión
+        uses: appleboy/scp-action@v0.1.7  
         with:
           host: ${{ secrets.DEPLOY_SITE }}
           username: deployuser
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          source: "./build"
+          source: "./build/*"
           target: "/var/www/lareverie/"
           strip_components: 1
 
