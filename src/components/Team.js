@@ -2,7 +2,7 @@ import React from 'react';
 import './Team.css';
 import caveman from '../images/team/caveman.jpg';
 import javier from '../images/team/javier-cabrera.jpg';
-import jonglass from '../images/team/jon-glass.jpg';
+import jonglass from '../images/team/jg_guitar.jpeg';
 import bhaskar from '../images/team/bhaskar.jpg';
 import quote from '../images/quote.svg';
 
@@ -53,7 +53,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={jonglass} alt='Jon Glass' />
             <div className='bio'>
-              Jon Glass is a founding engineer at La Reverie Studio LLC. His eclectic  career spans professional skateboarding, skate photography, painting, and software engineering, giving him a truly unique perspective on creativity and technology. Jon's diverse skill set allows him to approach development with an artistic sensibility and a keen eye for detail. You can explore his creative projects on <a href="https://instagram.com/jonglasss" target='_blank'>Instagram</a> and his technical work on <a href="https://github.com/jonglass82" target='_blank'>GitHub</a>.
+              Jon Glass is a founding engineer at La Reverie Studio LLC. His eclectic  career spans professional skateboard photography, painting, and software engineering, giving him a truly unique perspective on creativity and technology. Jon's diverse skill set allows him to approach development with an artistic sensibility and a keen eye for detail. You can explore his creative projects on <a href="https://instagram.com/jonglasss" target='_blank'>Instagram</a> and his technical work on <a href="https://github.com/jonglass82" target='_blank'>GitHub</a>.
               <div className='blockquote'>
                 <img className='icon-quote' width={15} src={quote} />
                 🔥
