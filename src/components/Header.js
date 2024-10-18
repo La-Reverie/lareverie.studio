@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import './Header.css';
+import logo from '../images/logo-primary2.svg';
 
 function Header() {
   const inputRef = useRef(null);
@@ -15,19 +16,19 @@ function Header() {
 
   return (
     <header>
-      <h1>La Reverie Studio</h1>
+      <h1>
+        <img className='logo' src={logo} alt="La Reverie Studio" />
+      </h1>
       <div className="dropdown">
         <label for='dropdown-checkbox' className="dropbtn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
             viewBox="0 0 24 24"
           >
             <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
               <path d="M0 0H24V24H0z"></path>
               <path
-                stroke="#ffffff"
+                stroke="#f5beac"
                 strokeDasharray="0,0"
                 strokeLinecap="round"
                 strokeWidth="2"
