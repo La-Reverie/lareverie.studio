@@ -6,8 +6,7 @@ function Contact() {
       <a id="contact" className="anchor" aria-hidden="true"></a>
       <div className="content"> 
         <h2 className="wrapper">
-          <div className="top">contact</div>
-          <div className="bottom" aria-hidden="true">contact</div>
+          <div className="bebas-neue">contact</div>
         </h2>
         <article className="text-black text-base font-normal leading-normal pb-3 pt-1">
           <a href='mailto:hello@lareverie.studio'>hello@lareverie.studio</a>

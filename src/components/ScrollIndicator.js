@@ -4,11 +4,22 @@ import './ScrollIndicator.css';
 function ScrollIndicator() {
   let ticking = false;
   let anchorEls;
+  let headerEl;
+  let scrollIndicatorEl;
 
   const hideArrowAtOffset = () => {
     const yPos = document.documentElement.scrollTop || document.body.scrollTop;
     if (yPos > 150) {
-      document.querySelector('.scroll-down-indicator').style.display = 'none';
+      scrollIndicatorEl.style.display = 'none';
+    }
+  };
+
+  const shrinkHeaderAtOffset = () => {
+    const yPos = document.documentElement.scrollTop || document.body.scrollTop;
+    if (yPos > 150) {
+      headerEl.classList.add('shrink');
+    } else {
+      headerEl.classList.remove('shrink');
     }
   };
 
@@ -16,6 +27,7 @@ function ScrollIndicator() {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         hideArrowAtOffset();
+        shrinkHeaderAtOffset();
         ticking = false;
       });
   
@@ -25,6 +37,8 @@ function ScrollIndicator() {
 
   useEffect(() => {
     anchorEls =  document.querySelectorAll('.anchor');
+    headerEl = document.querySelector('header');
+    scrollIndicatorEl = document.querySelector('.scroll-down-indicator');
     hideArrowAtOffset();
 
     window.addEventListener('scroll', handleScroll);

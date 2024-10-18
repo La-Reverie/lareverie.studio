@@ -13,11 +13,10 @@ function Team() {
       <a id="team" className="anchor" aria-hidden="true"></a>
       <div className="content"> 
         <h2 className="wrapper">
-          <div className="top">team</div>
-          <div className="bottom" aria-hidden="true">team</div>
+          <div className="bebas-neue">team</div>
         </h2>
         <article className="text-black text-base font-normal leading-normal pb-10 pt-1">
-          <h3 className='standout-05'>Jon Caveman – Founder</h3>
+          <h3 className='standout-01'>Jon Caveman – Founder</h3>
           <div className='flex'>
             <img className='team-member' src={caveman} alt='Jon Caveman' />
             <div className='bio'>
@@ -34,7 +33,7 @@ function Team() {
         </article>
 
         <article className="text-black text-base font-normal leading-normal pb-10 pt-1">
-          <h3 className='standout-05'>Javier Cabrera | Co-founder, Design & Development</h3>
+          <h3 className='standout-01'>Javier Cabrera | Co-founder, Design & Development</h3>
           <div className='flex'>
             <img className='team-member' src={javier} alt='Javier Cabrera' />
             <div className='bio'>
@@ -49,7 +48,7 @@ function Team() {
         </article>
 
         <article className="text-black text-base font-normal leading-normal pb-10 pt-1">
-          <h3 className='standout-05'>Jon Glass | Co-founder, Innovation</h3>
+          <h3 className='standout-01'>Jon Glass | Co-founder, Innovation</h3>
           <div className='flex'>
             <img className='team-member' src={jonglass} alt='Jon Glass' />
             <div className='bio'>
@@ -64,7 +63,7 @@ function Team() {
         </article>
 
         <article className="text-black text-base font-normal leading-normal pb-10 pt-1">
-          <h3 className='standout-05'>Bhaskar Ch | Product Management</h3>
+          <h3 className='standout-01'>Bhaskar Ch | Product Management</h3>
           <div className='flex'>
             <img className='team-member' src={bhaskar} alt='Bhaskar Ch' />
             <div className='bio'>

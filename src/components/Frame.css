@@ -7,7 +7,8 @@
   background-color: transparent;
   margin: 0 8px;
   border-left: 2px solid #ffff;
-    border-image: linear-gradient(to bottom, rgb(128, 0, 85), rgb(144, 146, 238), rgb(242, 255, 0)) 1 100%;
+  border-image: linear-gradient(to bottom, rgb(128, 0, 85), rgb(144, 146, 238), rgb(242, 255, 0)) 1 100%;
+  border-image: linear-gradient(to bottom, rgb(152, 99, 84), rgb(245, 190, 172), rgb(152, 99, 84)) 1 100%;
     border-image-slice: 1;
 }
 

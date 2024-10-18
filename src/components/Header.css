@@ -18,6 +18,43 @@ header h1 {
   flex-grow: 2;
 }
 
+header h1 .logo {
+  height: 75px;
+  margin: 0 auto;
+}
+
+header.shrink h1 .logo {
+  height: 50px;
+}
+
+header.shrink .dropbtn,
+header.shrink .dropbtn svg {
+  width: 25px;
+  height: 25px;
+}
+
+header h1 .logo,
+header .dropbtn,
+header .dropbtn svg {
+  transition: all 0.25s;
+}
+
+@media (max-width: 768px) {
+  header h1 .logo {
+    height: 50px;
+  }
+  
+  header .dropbtn,
+  header .dropbtn svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  header .dropdown-content {
+    top: 64px;
+  }
+}
+
 /* Dropdown Container */
 .dropdown {
   position: relative;
@@ -31,11 +68,17 @@ header h1 {
   font-size: 24px;
   cursor: pointer;
   padding: 18px 15px 0;
-  height: 100%;
   display: block;
   position: absolute;
-  right: 0;
+  right: 20px;
   z-index: 3;
+  width: 50px;
+  height: 50px;
+}
+
+.dropbtn svg {
+  width: 50px;
+  height: 50px;
 }
 
 @keyframes fadeIn {
@@ -60,8 +103,13 @@ header h1 {
   width: 100vw;
   height: 100vh;
   left: 0;
-  top: 55px;
+  top: 89px;
   animation: fadeOut 0.25s;
+  transition: all 0.25s;
+}
+
+header.shrink .dropdown-content {
+  top: 64px;
 }
 
 #dropdown-checkbox {
@@ -95,4 +143,8 @@ header h1 {
 /* Change color on hover */
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+
 }
