@@ -23,7 +23,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={jon} alt='Jon Caveman' />
             <div className='bio'>
-              All roads lead to here. Jon’s goal is to preserve what gets lost between big ideas and technological limitations. Jon injects more than three decades of coding experience into his creative process. With a career spanning advertising, big tech, and a stint as a rock radio DJ, Jon’s imagination knows no limit.
+              All roads lead to here. Jon’s goal is to preserve what gets lost between big ideas and technological limitations. Jon infuses more than three decades of coding experience into his creative process. With a career spanning advertising, big tech, and a stint as a rock radio DJ, Jon’s imagination knows no limit.
               <div className='blockquote'>
                 <img className='icon-quote' width={15} src={quote} />
                 My goal is to understand.<br />
