@@ -39,8 +39,8 @@ function Header() {
         </label>
         <input type="checkbox" id="dropdown-checkbox" ref={inputRef} />
         <div className="dropdown-content">
-          <a onClick={menuClicked} href="#about">About</a>
-          <a onClick={menuClicked} href="#expertise">Expertise</a>
+          <a onClick={menuClicked} href="#home">Home</a>
+          <a onClick={menuClicked} href="#who-we-are">Who we are</a>
           <a onClick={menuClicked} href="#team">Team</a>
           <a onClick={menuClicked} href="#contact">Contact</a>
         </div>
