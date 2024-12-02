@@ -24,12 +24,6 @@ function Team() {
             <img className='team-member' src={jon} alt='Jon Caveman' />
             <div className='bio'>
               All roads lead to here. Jon’s goal is to preserve what gets lost between big ideas and technological limitations. Jon infuses more than three decades of coding experience into his creative process. With a career spanning advertising, big tech, and a stint as a rock radio DJ, Jon’s imagination knows no limit.
-              <div className='blockquote'>
-                <img className='icon-quote' width={15} src={quote} />
-                My goal is to understand.<br />
-                Let me know how I can help.
-                <img className='icon-quote rotate' width={15} src={quote} />
-              </div>
             </div>
           </div>
         </article>
@@ -40,12 +34,6 @@ function Team() {
             <img className='team-member' src={lorenzo} alt='Lorenzo Castillo' />
             <div className='bio'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nisl mollis, elementum ligula nec, dictum sem. Nunc tempus est id risus pretium elementum. Vivamus mattis sem in convallis iaculis. Vestibulum nulla sem, ornare et dolor id, ultrices dapibus elit. Vestibulum molestie, eros at semper maximus, est tortor cursus dolor, et suscipit augue risus non urna. Ut faucibus odio eget nibh elementum iaculis.
-              <div className='blockquote'>
-                <img className='icon-quote' width={15} src={quote} />
-                My goal is to understand.<br />
-                Let me know how I can help.
-                <img className='icon-quote rotate' width={15} src={quote} />
-              </div>
             </div>
           </div>
         </article>
@@ -56,11 +44,6 @@ function Team() {
             <img className='team-member' src={javier} alt='Javier Cabrera' />
             <div className='bio'>
               Javier transforms whimsical ideas into digital experiences. His multifaceted background in writing, illustration, and web development allow him to combine artistic vision with technical proficiency and lead our most innovative design projects.
-              <div className='blockquote'>
-                <img className='icon-quote' width={15} src={quote} />
-                Stories are bridges to worlds.
-                <img className='icon-quote rotate' width={15} src={quote} />
-              </div>
             </div>
           </div>
         </article>
@@ -71,11 +54,6 @@ function Team() {
             <img className='team-member' src={jonglass} alt='Jon Glass' />
             <div className='bio'>
               Jon Glass is a software engineer with an artistic heart. He built a diverse skill set as a professional skateboard photographer, game coder and painter. Jon approaches development with artistic sensibility and an eye for detail.
-              <div className='blockquote'>
-                <img className='icon-quote' width={15} src={quote} />
-                🔥
-                <img className='icon-quote rotate' width={15} src={quote} />
-              </div>
             </div>
           </div>
         </article>
@@ -86,11 +64,6 @@ function Team() {
             <img className='team-member' src={kennedy} alt='Kennedy Vasquez' />
             <div className='bio'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nisl mollis, elementum ligula nec, dictum sem. Nunc tempus est id risus pretium elementum. Vivamus mattis sem in convallis iaculis. Vestibulum nulla sem, ornare et dolor id, ultrices dapibus elit. Vestibulum molestie, eros at semper maximus, est tortor cursus dolor, et suscipit augue risus non urna. Ut faucibus odio eget nibh elementum iaculis.
-              <div className='blockquote'>
-                <img className='icon-quote' width={15} src={quote} />
-                Stories are bridges to worlds.
-                <img className='icon-quote rotate' width={15} src={quote} />
-              </div>
             </div>
           </div>
         </article>
