@@ -27,27 +27,27 @@ function Home() {
         <p className='mb-12'>
           Experience our work in Apple Vision Pro (no device needed)
           <br />
-          ( example here )
+          (demo coming soon)
         </p>
         <p className='mb-12'>
           Thought-chain-prompt engineering
           <br />
-          ( example here )
+          (demo coming soon)
         </p>
         <p className='mb-12'>
           Generative content (try our tools)
           <br />
-          ( example here )
+          (demo coming soon)
         </p>
         <p className='mb-12'>
           Moving web presences
           <br />
-          ( example here )
+          (demo coming soon)
         </p>
         <p className='mb-12'>
           Intelligent user experiences
           <br />
-          ( example here )
+          (demo coming soon)
         </p>
       </article>
     </div>
