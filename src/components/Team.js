@@ -83,7 +83,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={bhaskar} alt='Bhaskar Ch' />
             <div className='bio'>
-              Bhaskar is a Business Analyst turned Product Manager with an MBA from Wayne State University. He is adept at aligning business objectives with technical execution, levering his analytical skills to drive impactful product strategies. Bhaskar's expertise lies in transforming complex business requirements into actionable roadmaps for product development. You can connect with him on <a href="https://www.linkedin.com/in/bchitraju/" target='_blank'>LinkedIn</a>.
+              Bhaskar is a Business Analyst turned Product Manager with an MBA from Wayne State University. He is adept at aligning business objectives with technical execution, levering his analytical skills to drive impactful product strategies. Bhaskar's expertise lies in transforming complex business requirements into actionable roadmaps for product development.
             </div>
           </div>
         </article>
