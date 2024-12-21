@@ -33,7 +33,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={lorenzo} alt='Lorenzo Castillo' />
             <div className='bio'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nisl mollis, elementum ligula nec, dictum sem. Nunc tempus est id risus pretium elementum. Vivamus mattis sem in convallis iaculis. Vestibulum nulla sem, ornare et dolor id, ultrices dapibus elit. Vestibulum molestie, eros at semper maximus, est tortor cursus dolor, et suscipit augue risus non urna. Ut faucibus odio eget nibh elementum iaculis.
+              Lorenzo started as a self-taught programmer while studying pre-med. By the time he graduated, Lorenzo had a degree in computer science and was ready to embark on a 10-year career as a software engineer, working at Google Search, LinkedIn and Airbnb. He holds a patent in augmented reality systems for user-controlled movement of wireless-connected objects. Ask Lorenzo about the home he built for himself in South Florida.
             </div>
           </div>
         </article>
@@ -63,7 +63,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={kennedy} alt='Kennedy Vasquez' />
             <div className='bio'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nisl mollis, elementum ligula nec, dictum sem. Nunc tempus est id risus pretium elementum. Vivamus mattis sem in convallis iaculis. Vestibulum nulla sem, ornare et dolor id, ultrices dapibus elit. Vestibulum molestie, eros at semper maximus, est tortor cursus dolor, et suscipit augue risus non urna. Ut faucibus odio eget nibh elementum iaculis.
+            Kennedy is a digital native and his passion is connecting people and ideas. From online community management for a newspaper in Ciudad Guayana, Venezuela to digital marketing at ad agencies in Buenos Aires, Argentina, Kennedy brings the perfect combination of marketing and technical know-how to the La Reverie team. When he's not brainstorming the next big campaign, Kennedy enjoys staying up-to-date with the latest digital trends and fostering connections in the online space.
             </div>
           </div>
         </article>
@@ -73,7 +73,7 @@ function Team() {
           <div className='flex'>
             <img className='team-member' src={bharti} alt='Bharti Batra' />
             <div className='bio'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nisl mollis, elementum ligula nec, dictum sem. Nunc tempus est id risus pretium elementum. Vivamus mattis sem in convallis iaculis. Vestibulum nulla sem, ornare et dolor id, ultrices dapibus elit. Vestibulum molestie, eros at semper maximus, est tortor cursus dolor, et suscipit augue risus non urna. Ut faucibus odio eget nibh elementum iaculis.
+              (coming soon)
             </div>
           </div>
         </article>
