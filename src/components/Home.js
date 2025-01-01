@@ -3,12 +3,6 @@ function Home() {
     <section className="content-wrap">
     <a id="home" className="anchor" aria-hidden="true"></a>
     <div className="content"> 
-      <h2 className="wrapper">
-        {/* <div className="top">about</div>
-        <div className="bottom" aria-hidden="true">about</div> */}
-        {/* <div className="bebas-neue">about</div> */}
-      </h2>
-
       <article className="text-black text-base font-normal leading-normal pb-3 pt-1">
         <h3 className='bebas-neue'>Boundless curiosity</h3>
         <p className='mb-12'>
