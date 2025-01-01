@@ -20,7 +20,7 @@ function Header() {
         <img className='logo' src={logo} alt="La Reverie Studio" />
       </h1>
       <div className="dropdown">
-        <label for='dropdown-checkbox' className="dropbtn">
+        <label htmlFor='dropdown-checkbox' className="dropbtn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
