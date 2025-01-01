@@ -3,9 +3,10 @@ import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import { gsap } from 'gsap';
+import ScrollHandler from './ScrollHandler';
 
 
-const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'easeOut', uniformsProp, onTransitionStart, onClick }, ref) => {
+const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'easeOut', uniformsProp, onClick, setClicked, clicked }, ref) => {
     const planeRef = useRef();
     const [textures, setTextures] = useState([]);
     const [current, setCurrent] = useState(0);
@@ -50,7 +51,7 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
         }
     `;
 
-  useEffect(() => {
+    useEffect(() => {
          if(!images || !Array.isArray(images)) {
             console.error('images is not an array or is null', images)
             return;
@@ -62,7 +63,7 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
                  const video = document.createElement('video');
                 video.src = images[images.length - 1];
                 video.loop = true;
-               video.muted = true;
+                video.muted = true;
              
              const videoTexture = new THREE.VideoTexture(video);
                  await video.play();
@@ -88,7 +89,7 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
          material.current.uniforms.resolution.value = new THREE.Vector4(width, height, a1, a2);
          material.current.uniforms.texture1.value = textures[0];
            material.current.uniforms.texture2.value = textures[1];
-           material.current.uniforms.displacement.value = displacementTexture;
+            material.current.uniforms.displacement.value = displacementTexture;
        planeRef.current.scale.x = width * 1;
         planeRef.current.scale.y = height * 1;
     }, [textures, width, height, displacementTexture]);
@@ -164,7 +165,7 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
                     swipe: { value: 0 },
                     texture1: { value: null },
                     texture2: { value: null },
-                    displacement: { value: null },
+                     displacement: { value: null },
                     resolution: { value: new THREE.Vector4() },
                 }}
             />
@@ -176,6 +177,7 @@ const Hero = ({ images, uniforms }) => {
     const canvasContainer = useRef();
     const transitionPlaneRef = useRef(null);
     const [clicked, setClicked] = useState(false);
+
     // Actualización dinámica del tamaño al redimensionar
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
@@ -189,66 +191,43 @@ const Hero = ({ images, uniforms }) => {
     }, []);
 
 
-    useEffect(() => {
-        let scrollCount = 0;
-
-        const preventScroll = (e) => {
-            e.preventDefault();
-            scrollCount += 1;
-            if (scrollCount >= 2 && clicked) {
-                releaseScroll();
-                if (transitionPlaneRef.current) {
-                   setTimeout(() => {
-                        transitionPlaneRef.current.next();
-                    }, 0);
-                 }
-            }
-        };
-
-         const releaseScroll = () => {
-            window.removeEventListener('wheel', preventScroll);
-            window.removeEventListener('touchmove', preventScroll);
-            window.removeEventListener('keydown', preventScroll);
-        };
-
-        if (!clicked) {
-           window.addEventListener('wheel', preventScroll, { passive: false });
-            window.addEventListener('touchmove', preventScroll, { passive: false });
-            window.addEventListener('keydown', preventScroll, { passive: false });
-       }
-
-
-      return () => releaseScroll()
-    }, [clicked, transitionPlaneRef]);
+    const handleScroll = () => {
+         if (transitionPlaneRef.current) {
+                 transitionPlaneRef.current.next();
+        }
+    };
 
     return (
         <div
             ref={canvasContainer}
             style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}
         >
-            <Canvas
-                style={{ position: 'absolute', top: 0, left: 0 }}
-                camera={{ position: [0, 0, 1.5], fov: 75 }}
-                onCreated={({ gl, camera }) => {
-                    camera.aspect = size.width / size.height;
-                     camera.updateProjectionMatrix();
-                     gl.setSize(size.width, size.height);
-                 }}
-            >
-                <ambientLight intensity={0.5} />
-                <TransitionPlane 
-                    images={images} 
-                    uniformsProp={uniforms} 
-                    ref={transitionPlaneRef}
-                    onClick={() => {
-                      setClicked(true);
-                      if (transitionPlaneRef.current) {
-                         transitionPlaneRef.current.next();
-                      }
+            <ScrollHandler  onScroll={handleScroll} setHeroClicked={setClicked} heroClicked={clicked} >
+                <Canvas
+                    style={{ position: 'absolute', top: 0, left: 0 }}
+                    camera={{ position: [0, 0, 1.5], fov: 75 }}
+                    onCreated={({ gl, camera }) => {
+                        camera.aspect = size.width / size.height;
+                        camera.updateProjectionMatrix();
+                        gl.setSize(size.width, size.height);
                     }}
-                   
-                />
-            </Canvas>
+                >
+                    <ambientLight intensity={0.5} />
+                    <TransitionPlane 
+                        images={images} 
+                        uniformsProp={uniforms} 
+                        ref={transitionPlaneRef}
+                         onClick={() => {
+                            setClicked(true)
+                           if (transitionPlaneRef.current) {
+                                   transitionPlaneRef.current.next();
+                            }
+                         }}
+                         clicked={clicked}
+                         setClicked={setClicked}
+                    />
+                </Canvas>
+           </ScrollHandler>
         </div>
     );
 };
