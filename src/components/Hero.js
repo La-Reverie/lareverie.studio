@@ -5,15 +5,17 @@ import { TextureLoader } from 'three';
 import { gsap } from 'gsap';
 import ScrollHandler from './ScrollHandler';
 
-
-const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'easeOut', uniformsProp, onClick, setClicked, clicked }, ref) => {
+const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'easeOut', uniformsProp, setclicked, clicked, setCurrent }, ref) => {
     const planeRef = useRef();
     const [textures, setTextures] = useState([]);
-    const [current, setCurrent] = useState(0);
+    const [current, setLocalCurrent] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const material = useRef();
     const videoRef = useRef();
     const displacementTexture = useLoader(THREE.TextureLoader, '/img/disp1.jpg');
+    const isFirstRender = useRef(true);
+    const [isClickBlocked, setIsClickBlocked] = useState(false);
+
 
     const vertexShader = `
         varying vec2 vUv;
@@ -111,7 +113,8 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
             // Crear un timeline de GSAP para animaciones paralelas
             const tl = gsap.timeline({
                 onComplete: () => {
-                    setCurrent(nextIndex);
+                    setLocalCurrent(nextIndex)
+                    setCurrent(nextIndex); //Se agrego esta linea
                     material.current.uniforms.texture1.value = nextTexture;
                     material.current.uniforms.progress.value = 0;
                     setIsRunning(false);
@@ -125,8 +128,7 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
                 ease: `power2.${easing}`,
             });
 
-            // Animaciones de scale y displacement en paralelo
-            tl.to(planeRef.current.scale, {
+             tl.to(planeRef.current.scale, {
                 x: width * 1.45,
                 y: height * 1.45,
                 duration: 0.7,
@@ -138,17 +140,28 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
                 duration: duration,
                 ease: `power2.${easing}`,
             }, 0);
-            
         }
-    },[current, duration, easing, isRunning, textures, width, height])
-    
+    },[current, duration, easing, isRunning, textures, width, height, setCurrent])
+
+  const handleClick = () => {
+          if (isClickBlocked) return;
+          setIsClickBlocked(true);
+          next();
+          setclicked(true)
+  
+          setTimeout(() => {
+              setIsClickBlocked(false);
+             
+          }, 1000);
+      };
+
     React.useImperativeHandle(ref, () => ({
         next
       }),[next])
 
 
     return textures.length >= 2 ? (
-        <mesh ref={planeRef} onClick={onClick || next}>
+        <mesh ref={planeRef} onClick={handleClick}>
             <planeGeometry args={[1, 1]} />
             <shaderMaterial
                 ref={material}
@@ -176,33 +189,37 @@ const TransitionPlane = React.forwardRef(({ images, duration = 0.7, easing = 'ea
 const Hero = ({ images, uniforms }) => {
     const canvasContainer = useRef();
     const transitionPlaneRef = useRef(null);
-    const [clicked, setClicked] = useState(false);
+    const [clicked, setclicked] = useState(false);
+    const [current, setCurrent] = useState(0);
 
     // Actualización dinámica del tamaño al redimensionar
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
     useEffect(() => {
         const handleResize = () => {
-         setSize({ width: window.innerWidth, height: window.innerHeight });
-          window.location.reload();
+            setSize({ width: window.innerWidth, height: window.innerHeight });
+            window.location.reload();
         };
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-
     const handleScroll = () => {
-         if (transitionPlaneRef.current) {
+        if (transitionPlaneRef.current) {
                  transitionPlaneRef.current.next();
         }
     };
+
+    useEffect(() => {
+       setclicked(false)
+    }, [current])
 
     return (
         <div
             ref={canvasContainer}
             style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}
         >
-            <ScrollHandler  onScroll={handleScroll} setHeroClicked={setClicked} heroClicked={clicked} >
+            <ScrollHandler  onScroll={handleScroll} setHeroClicked={setclicked} heroClicked={clicked} >
                 <Canvas
                     style={{ position: 'absolute', top: 0, left: 0 }}
                     camera={{ position: [0, 0, 1.5], fov: 75 }}
@@ -213,18 +230,13 @@ const Hero = ({ images, uniforms }) => {
                     }}
                 >
                     <ambientLight intensity={0.5} />
-                    <TransitionPlane 
-                        images={images} 
-                        uniformsProp={uniforms} 
+                    <TransitionPlane
+                        images={images}
+                        uniformsProp={uniforms}
                         ref={transitionPlaneRef}
-                         onClick={() => {
-                            setClicked(true)
-                           if (transitionPlaneRef.current) {
-                                   transitionPlaneRef.current.next();
-                            }
-                         }}
-                         clicked={clicked}
-                         setClicked={setClicked}
+                        setclicked={setclicked}
+                        clicked={clicked}
+                         setCurrent={setCurrent}
                     />
                 </Canvas>
            </ScrollHandler>

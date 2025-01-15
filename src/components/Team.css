@@ -27,3 +27,14 @@
 .bio {
   max-width: 500px;
 }
+.inverted-scroll-container {
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+.inverted-scroll-content {
+  display: flex;
+  flex-direction: column;
+  
+}

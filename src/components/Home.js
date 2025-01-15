@@ -1,7 +1,13 @@
 function Home() {
   return (
     <section className="content-wrap">
-    <a id="home" className="anchor" aria-hidden="true"></a>
+    <a 
+      id="home" 
+      className="anchor" 
+      href="#home" 
+      aria-label="Home section"
+      aria-hidden="true"
+    ></a>
     <div className="content"> 
       <article className="text-black text-base font-normal leading-normal pb-3 pt-1">
         <h3 className='bebas-neue'>Boundless curiosity</h3>
@@ -16,32 +22,6 @@ function Home() {
         <h3 className='bebas-neue'>Fresh discoveries</h3>
         <p className='mb-12'>
           Whether you’re a household name or the first of your kind, we are ready to help you break new ground. From concept to launch and beyond, our team will keep you a step ahead with cutting-edge tech to reach and engage customers, make conversions and scale with ease.
-        </p>
-        <h3 className='bebas-neue'>Dive in</h3>
-        <p className='mb-12'>
-          Experience our work in Apple Vision Pro (no device needed)
-          <br />
-          (demo coming soon)
-        </p>
-        <p className='mb-12'>
-          Thought-chain-prompt engineering
-          <br />
-          (demo coming soon)
-        </p>
-        <p className='mb-12'>
-          Generative content (try our tools)
-          <br />
-          (demo coming soon)
-        </p>
-        <p className='mb-12'>
-          Moving web presences
-          <br />
-          (demo coming soon)
-        </p>
-        <p className='mb-12'>
-          Intelligent user experiences
-          <br />
-          (demo coming soon)
         </p>
       </article>
     </div>

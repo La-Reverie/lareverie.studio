@@ -27,10 +27,6 @@ h2 {
   font-size: 24px;
 }
 
-/* .company {
-  font-family: "Dancing Script", cursive;
-} */
-
 .bebas-neue,
 .company {
   font-family: "Bebas Neue", sans-serif;
@@ -79,4 +75,15 @@ h3 {
 
 article p {
   line-height: 32px;
+}
+
+.glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  
 }

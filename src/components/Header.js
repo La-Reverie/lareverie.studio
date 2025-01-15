@@ -1,50 +1,69 @@
-import React, { useRef } from 'react';
+// Header.jsx
+import React, { useState } from 'react';
+import { bubble as Menu } from 'react-burger-menu';
 import './Header.css';
 import logo from '../images/logo-primary2.svg';
 
 function Header() {
-  const inputRef = useRef(null);
-  const menuClicked = (e) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleStateChange = (state) => {
+    setIsMenuOpen(state.isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const scrollToSection = (e) => {
     e.preventDefault();
     const target = e.target;
-    inputRef.current.checked = false;
-
-    document.querySelector(target.getAttribute('href')).scrollIntoView({
+    const element = document.querySelector(target.getAttribute('href'));
+    if (element) {
+      element.scrollIntoView({
         behavior: 'smooth'
-    });
+      });
+      closeMenu();
+    }
   };
 
   return (
     <header>
       <h1>
-        <img className='logo' src={logo} alt="La Reverie Studio" />
+        <img className="logo" src={logo} alt="La Reverie Studio" />
       </h1>
-      <div className="dropdown">
-        <label htmlFor='dropdown-checkbox' className="dropbtn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
-              <path d="M0 0H24V24H0z"></path>
-              <path
-                stroke="#f5beac"
-                strokeDasharray="0,0"
-                strokeLinecap="round"
-                strokeWidth="2"
-                d="M12 6a1 1 0 100-2 1 1 0 000 2zM12 13a1 1 0 100-2 1 1 0 000 2zM12 20a1 1 0 100-2 1 1 0 000 2z"
-              ></path>
-            </g>
-          </svg>
-        </label>
-        <input type="checkbox" id="dropdown-checkbox" ref={inputRef} />
-        <div className="dropdown-content">
-          <a onClick={menuClicked} href="#home">Home</a>
-          <a onClick={menuClicked} href="#who-we-are">Who we are</a>
-          <a onClick={menuClicked} href="#team">Team</a>
-          <a onClick={menuClicked} href="#contact">Contact</a>
-        </div>
-      </div>
+      
+        <div 
+        className={`menu-overlay ${isMenuOpen ? 'menu-overlay--visible' : ''}`} 
+        onClick={closeMenu} 
+      />
+      
+      <Menu 
+        right
+        isOpen={isMenuOpen}
+        width={'250px'}
+        onStateChange={handleStateChange}
+        className="burger-menu"
+      >
+        <a onClick={scrollToSection} className="menu-item" href="#home">
+          Home
+        </a>
+        <a onClick={scrollToSection} className="menu-item" href="#featured-work">
+          Featured Work
+        </a>
+        <a onClick={scrollToSection} className="menu-item" href="#the-studio">
+          The Studio
+        </a>
+        <a onClick={scrollToSection} className="menu-item" href="#team">
+          The Team
+        </a>
+        <a onClick={scrollToSection} className="menu-item" href="#news">
+          What's New
+        </a>
+        <a onClick={scrollToSection} className="menu-item" href="#contact">
+          Let's talk
+        </a>
+      </Menu>
     </header>
   );
 }
