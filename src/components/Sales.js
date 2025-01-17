@@ -26,6 +26,7 @@ function Sales() {
       };
 
   return (
+    <section id="sales">
       <motion.div
         className="relative w-full py-16 sm:py-24 lg:py-32 bg-gray-100 text-gray-900 overflow-hidden"
          initial="hidden"
@@ -58,6 +59,7 @@ function Sales() {
               </div>
         </div>
     </motion.div>
+    </section>
   );
 }
 

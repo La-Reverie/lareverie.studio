@@ -137,7 +137,7 @@ function Home() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-gray-900 text-white overflow-hidden">
+    <section id="home" className="relative w-full min-h-screen bg-gray-900 text-white overflow-hidden">
       <a
         id="home"
         className="anchor"

@@ -21,8 +21,8 @@ function App() {
                 image="/img/woman.jpeg"
                 depthMap="/img/woman.png"
             /> */}
-            <Header />
             <Frame />
+            <Header />
             <Hero />
             <Home />
             <Sales />
