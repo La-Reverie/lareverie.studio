@@ -20,6 +20,7 @@ const Hero = () => {
   }, []);
 
   return (
+    <section id="welcome">
     <div className="relative w-full h-screen">
       {/* Background Video */}
       <video
@@ -57,6 +58,7 @@ const Hero = () => {
         </div>
       )}
     </div>
+    </section>
   );
 };
 
