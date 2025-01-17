@@ -10,11 +10,12 @@ function Frame() {
   const debounceTimeout = useRef(null);
 
   const messages = [
-    { section: "#home", text: "Crafting digital magic from scratch." },
+    { section: "#welcome", text: "Scroll down please." },
+    { section: "#home", text: "Crafting digital magic." },
+    { section: "#sales", text: "Your digital goals, our proven expertise." },
     { section: "#the-studio", text: "Where ideas take their digital form." },
     { section: "#team", text: "The passionate minds behind the code." },
-    { section: "#sales", text: "Your digital goals, our proven expertise." },
-    { section: "#contact", text: "Ready for an amazing project?" },
+    { section: "#contact", text: "Ready to create something amazing together?" },
     { section: "default", text: "Scroll down please" },
   ];
 
