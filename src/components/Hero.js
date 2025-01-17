@@ -52,7 +52,7 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       {!scrolled && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-14 left-1/2 transform -translate-x-1/2 animate-bounce">
           <FaChevronDown className="text-white text-3xl" />
         </div>
       )}

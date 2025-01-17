@@ -16,10 +16,11 @@ function TheStudio() {
 
   return (
     <section
+      id="the-studio"
       className="bg-gradient-to-br from-blue-800 to-purple-900 py-20 relative overflow-hidden"
     >
       {/* Anchor for scrolling */}
-      <div id="the-studio" className="anchor absolute -top-24" aria-hidden="true"></div>
+      <div className="anchor absolute -top-24" aria-hidden="true"></div>
 
       {/* Floating decorative elements */}
       <motion.div

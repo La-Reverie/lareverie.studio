@@ -105,7 +105,7 @@ function TeamMember({ member }) {
 
 
     return (
-        <article
+        <section
             ref={cardRef}
             className="card bg-blue-950 border-4 border-blue-950 hover:shadow-lg hover:shadow-gray-950 rounded-lg overflow-hidden transition-all my-10 relative"
         >
@@ -135,7 +135,7 @@ function TeamMember({ member }) {
                 <p className="text-gray-400 leading-normal">{member.bio}</p>
             </div>
             <div className="glow"></div>
-        </article>
+        </section>
     );
 }
 
@@ -189,7 +189,7 @@ function Team() {
     ];
 
     return (
-        <section className="bg-gray-900 relative w-full min-h-screen py-16">
+        <section id="team" className="bg-gray-900 relative w-full min-h-screen py-16">
             <div id="team" className="anchor absolute -top-24" aria-hidden="true"></div>
             <div className="container mx-auto flex flex-col lg:flex-row">
                 {/* Left Column - Intro */}
