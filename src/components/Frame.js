@@ -15,7 +15,7 @@ function Frame() {
     { section: "#sales", text: "Your digital goals, our proven expertise." },
     { section: "#the-studio", text: "Where ideas take their digital form." },
     { section: "#team", text: "The passionate minds behind the code." },
-    { section: "#contact", text: "Ready to create something amazing together?" },
+    { section: "#contact", text: "Let's work together!" },
     { section: "default", text: "Scroll down please" },
   ];
 
