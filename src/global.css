@@ -1,3 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #220395;
+}
+
 .content-wrap {
   position: relative;
   z-index: 2;
@@ -85,5 +93,30 @@ article p {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  
+}
+
+.bm-menu-wrap {
+  @apply min-w-[300px] md:min-w-[500px];
+}
+
+.bm-menu {
+  @apply w-full left-0 pl-8;
+}
+
+.hello {
+  padding:0;
+  top:0;
+  background-color: none;
+}
+
+.hello svg {
+  fill: var(--primary);
+}
+
+.bm-cross-button {
+  @apply -mt-7;
+}
+
+.bm-menu-mobile {
+  @apply fixed bottom-10 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-black text-white shadow-md sm:top-4 sm:bottom-auto sm:right-8 sm:h-10 sm:w-10;
 }

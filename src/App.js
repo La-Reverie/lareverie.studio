@@ -2,41 +2,34 @@ import React from 'react';
 import Header from './components/Header';
 import Frame from './components/Frame';
 import Hero from './components/Hero';
-import Pseudo3DBackground from './components/Pseudo3DBackground';
-import ScrollIndicator from './components/ScrollIndicator';
+// import Pseudo3DBackground from './components/Pseudo3DBackground';
 import Home from './components/Home';
+import Sales from './components/Sales';
 import TheStudio from './components/TheStudio';
 import Team from './components/Team';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
-import FeaturedWork from './components/FeaturedWork';
+// import FeaturedWork from './components/FeaturedWork';
 import './global.css';
 import './App.css';
 
 function App() {
-    const images = [
-        '/img/ideas.jpg',
-        '/img/video.mp4'
-    ];
     
-    const uniforms = {
-        radius: { value: 0.9, min: 0.1, max: 2 },
-        width: { value: 0.35, min: 0, max: 1 },
-    };
-
     return (
         <div className="App">
-            <Pseudo3DBackground 
+            {/* <Pseudo3DBackground 
                 image="/img/woman.jpeg"
                 depthMap="/img/woman.png"
-            />
+            /> */}
             <Header />
             <Frame />
-            <Hero images={images} uniforms={uniforms} />
-            <ScrollIndicator />
+            <Hero />
             <Home />
-            <FeaturedWork />
+            <Sales />
+            {/* <FeaturedWork /> */}
             <TheStudio />
             <Team />
+            <Contact />
             <Footer />
         </div>
     );
