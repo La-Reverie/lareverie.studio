@@ -76,6 +76,14 @@ function Header() {
           >
             Featured Work
           </a> */}
+
+          <a
+            onClick={scrollToSection}
+            className="menu-item block text-xl md:text-4xl font-semibold text-gray-200 py-3 md:py-5 opacity-60 hover:opacity-100 transition-all duration-150"
+            href="#home"
+          >
+            Our Services
+          </a>
           <a
             onClick={scrollToSection}
             className="menu-item block text-xl md:text-4xl font-semibold text-gray-200 py-3 md:py-5 opacity-60 hover:opacity-100 transition-all duration-150"
@@ -90,13 +98,7 @@ function Header() {
           >
             The Team
           </a>
-          <a
-            onClick={scrollToSection}
-            className="menu-item block text-xl md:text-4xl font-semibold text-gray-200 py-3 md:py-5 opacity-60 hover:opacity-100 transition-all duration-150"
-            href="#news"
-          >
-            What's New
-          </a>
+          
           <a
             onClick={scrollToSection}
             className="menu-item block text-xl md:text-4xl font-semibold text-gray-200 py-3 md:py-5 opacity-60 hover:opacity-100 transition-all duration-150"
