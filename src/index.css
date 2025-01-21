@@ -21,3 +21,31 @@ code {
     width: 100%;
   }
 }
+
+.benefits-carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out; /* Smooth transition for rotation */
+  display: block;
+  pointer-events: auto;
+}
+
+.benefit-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #3f3c6b, #4c2d65);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transition: transform 0.8s ease-in-out;
+}
