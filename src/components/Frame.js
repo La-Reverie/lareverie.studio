@@ -21,17 +21,18 @@ function Frame() {
     ];
 
     const typeMessage = async () => {
-            await controls.start({ opacity: 1, transition: { duration: 0.1 } });
-            setCurrentText(""); // Clear previous text
-            const newMessage = messages[currentMessageIndex].text;
-            for (let i = 0; i <= newMessage.length; i++) {
-                setCurrentText(newMessage.slice(0, i));
-                await new Promise((resolve) => setTimeout(resolve, 50));
-            }
-            await new Promise((resolve) => setTimeout(resolve, 100));
-           await controls.start({ opacity: 0, transition: { duration: 0.3 } });
-            setCurrentText("");
-        };
+      await controls.start({ opacity: 1, transition: { duration: 0.1 } });
+      setCurrentText(""); // Clear previous text
+      const newMessage = messages[currentMessageIndex].text;
+      for (let i = 0; i <= newMessage.length; i++) {
+          setCurrentText(newMessage.slice(0, i));
+          await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+      // Wait here before fading out
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+     await controls.start({ opacity: 0, transition: { duration: 0.3 } });
+      setCurrentText("");
+  };
 
 
     useEffect(() => {

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, AnimatePrescense } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import {
   FaGlobe,
   FaGoogle,
@@ -20,13 +20,13 @@ function Home() {
     {
       title: "Google Ads",
       description:
-        "Implementing data-driven Google Ads campaigns to maximize your return on investment.",
+        "Implement strategic SEM campaigns to attract high-quality traffic and achieve your business objectives",
       icon: FaGoogle,
     },
     {
       title: "Meta Ads",
       description:
-        "Creating engaging Meta advertising campaigns to expand your reach and drive conversions.",
+        "Creating and running advertising campaigns across Instagram and Facebook to reach a wider audience and drive conversions",
       icon: FaFacebook,
     },
     {
@@ -77,9 +77,12 @@ function Home() {
   ];
 
   const [currentBenefitIndex, setCurrentBenefitIndex] = useState(0);
+  const [rotation, setRotation] = useState(0);
   const [carouselVisible, setCarouselVisible] = useState(false);
-  const controls = useAnimation();
   const servicesRef = useRef(null);
+  const carouselRef = useRef(null);
+    const timerRef = useRef(null)
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,36 +108,33 @@ function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    let timer;
-    if (carouselVisible) {
-      timer = setTimeout(() => {
-        setCurrentBenefitIndex(
-          (prevIndex) => (prevIndex + 1) % benefits.length
-        );
-      }, 5000);
-    }
-    return () => clearTimeout(timer);
-  }, [currentBenefitIndex, benefits.length, carouselVisible]);
+    useEffect(() => {
+      if (carouselVisible) {
+          startTimer()
+      }
+      return () => clearTimeout(timerRef.current);
+    }, [carouselVisible]);
+
+     const startTimer = () => {
+       timerRef.current = setInterval(() => {
+            setCurrentBenefitIndex((prevIndex) => prevIndex + 1 );
+            setRotation((prevRotation) => prevRotation - 120 ); // Increment for rotation direction
+       }, 5000);
+    };
+
 
   const handleCarouselClick = () => {
-    setCurrentBenefitIndex((prevIndex) => (prevIndex + 1) % benefits.length);
+        setCurrentBenefitIndex((prevIndex) => prevIndex + 1 );
+        setRotation((prevRotation) => prevRotation - 120);
   };
 
-  const transition = {
-    type: "spring",
-    stiffness: 100,
-    damping: 20,
-  };
-
-  const carouselVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+    const handleMouseEnter = () => {
+        clearInterval(timerRef.current)
+    }
+    const handleMouseLeave = () => {
+        startTimer()
+    }
+    
 
   return (
     <section id="home" className="relative w-full min-h-screen bg-gray-900 text-white overflow-hidden">
@@ -169,22 +169,33 @@ function Home() {
               Strategic solutions to help you achieve your business goals
               online.
             </p>
-            <motion.div
-              className="p-4 md:p-6 shadow-2xl bg-gradient-to-r from-purple-900 to-pink-800 cursor-pointer md:mr-16 min-h-[210px] flex flex-col justify-center items-center"
-              key={currentBenefitIndex}
-              transition={transition}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              onClick={handleCarouselClick}
-            >
-              <h3 className="text-2xl md:text-xl text-yellow-400 font-semibold mb-2">
-                {benefits[currentBenefitIndex].title.split(":")[0]}
-              </h3>
-              <p className="text-gray-200 text-md md:text-2xl text-center">
-                {benefits[currentBenefitIndex].description}
-              </p>
-            </motion.div>
+
+              <div className="relative w-full max-w-[650px]  h-[310px] md:mr-16 transform-style: preserve-3d">
+                <div
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    ref={carouselRef}
+                    className="benefits-carousel"
+                    style={{ transform: `rotateY(${rotation}deg)` }}
+                >
+                  {benefits.map((benefit, index) => (
+                      <div
+                          key={index}
+                          className="benefit-card"
+
+                          onClick={handleCarouselClick}
+                           style={{transform: `rotateY(${index * 120}deg) translateZ(150px)`}}
+                           >
+                          <h3 className="text-2xl md:text-xl text-yellow-400 font-semibold mb-2">
+                                {benefit.title}
+                            </h3>
+                         <p className="text-gray-200 text-md md:text-2xl text-center">
+                                {benefit.description}
+                            </p>
+                      </div>
+                  ))}
+                  </div>
+              </div>
           </motion.div>
           <motion.div
             className="md:w-1/2"
@@ -202,7 +213,7 @@ function Home() {
                   delay: index * 0.6, // Incrementamos el delay entre elementos
                 }}
               >
-                <div className="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center text-gray-400">
+                <div className="p-2 rounded-full bg-gray-700 flex items-center justify-center text-gray-400">
                   <service.icon className="w-8 h-8" />
                 </div>
                 <div>

@@ -14,6 +14,7 @@ const itemVariants = {
 
 function Contact() {
   const [name, setName] = useState("");
+  const [Businessname, setBusinessname] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [services, setServices] = useState([]);
@@ -58,6 +59,7 @@ function Contact() {
         },
         body: JSON.stringify({
           name,
+          Businessname,
           email,
           website,
           services,
@@ -69,6 +71,7 @@ function Contact() {
         setSubmissionMessage("Message sent successfully!");
         // Reset form after successful submission
         setName("");
+        setBusinessname("");
         setEmail("");
         setWebsite("");
         setServices([]);
@@ -137,6 +140,26 @@ function Contact() {
               </div>
               <div className="mb-3">
                 <label
+                  htmlFor="Businessname"
+                  className="block text-white mb-1 text-base uppercase"
+                >
+                  Business Name
+                </label>
+                <motion.input
+                  type="text"
+                  id="Businessname"
+                  value={Businessname}
+                  onChange={(e) => setName(e.target.value)}
+                  className={`w-full p-3 rounded-sm bg-white text-gray-800 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition-all duration-200 text-2xl ${
+                    errors.Businessname ? "border-red-500" : ""
+                  }`}
+                />
+                {errors.Businessname && (
+                  <p className="text-red-500 text-sm mt-1">{errors.Businessname}</p>
+                )}
+              </div>
+              <div className="mb-3">
+                <label
                   htmlFor="email"
                   className="block text-white mb-1 text-base font-bold uppercase"
                 >
@@ -175,65 +198,69 @@ function Contact() {
                   <p className="text-red-500 text-sm mt-1">{errors.website}</p>
                 )}
               </div>
-              <div className="mb-3">
-                <label className="block text-white mb-1 text-base uppercase font-bold">
-                  What you need help with?
-                </label>
-                <div className="flex flex-col gap-1 py-2">
-                  <label className="flex items-center text-white text-base">
-                    <input
-                      type="checkbox"
-                      value="Web Design / Development"
-                      checked={services.includes("Web Design / Development")}
-                      onChange={() =>
-                        handleCheckboxChange("Web Design / Development")
-                      }
-                      className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
-                    />
-                    Web Design / Development
-                  </label>
-                  <label className="flex items-center text-white text-base">
-                    <input
-                      type="checkbox"
-                      value="Content Marketing"
-                      checked={services.includes("Content Marketing")}
-                      onChange={() => handleCheckboxChange("Content Marketing")}
-                      className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
-                    />
-                    Content Marketing
-                  </label>
-                  <label className="flex items-center text-white text-base">
-                    <input
-                      type="checkbox"
-                      value="Digital PR"
-                      checked={services.includes("Digital PR")}
-                      onChange={() => handleCheckboxChange("Digital PR")}
-                      className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
-                    />
-                    Digital PR
-                  </label>
-                  <label className="flex items-center text-white text-base">
-                    <input
-                      type="checkbox"
-                      value="Technical SEO"
-                      checked={services.includes("Technical SEO")}
-                      onChange={() => handleCheckboxChange("Technical SEO")}
-                      className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
-                    />
-                    Technical SEO
-                  </label>
-                  <label className="flex items-center text-white text-base">
-                    <input
-                      type="checkbox"
-                      value="Social Media"
-                      checked={services.includes("Social Media")}
-                      onChange={() => handleCheckboxChange("Social Media")}
-                      className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
-                    />
-                    Social Media
-                  </label>
-                </div>
+
+
+              <div className="mb-5 lg:col-span-2 -mt-5">
+  <label className="block text-white text-base uppercase font-bold">
+    What you need help with?
+  </label>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-2">
+    <label className="flex items-center text-white text-base">
+      <input
+        type="checkbox"
+        value="Development"
+        checked={services.includes("Development")}
+        onChange={() =>
+          handleCheckboxChange("Development")
+        }
+        className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
+      />
+      Development
+    </label>
+    <label className="flex items-center text-white text-base">
+      <input
+        type="checkbox"
+        value="Content Marketing"
+        checked={services.includes("Content Marketing")}
+        onChange={() => handleCheckboxChange("Content Marketing")}
+        className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
+      />
+      Content Marketing
+    </label>
+    <label className="flex items-center text-white text-base">
+      <input
+        type="checkbox"
+        value="Digital PR"
+        checked={services.includes("Digital PR")}
+        onChange={() => handleCheckboxChange("Digital PR")}
+        className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
+      />
+      Digital PR
+    </label>
+    <label className="flex items-center text-white text-base">
+      <input
+        type="checkbox"
+        value="Technical SEO"
+        checked={services.includes("Technical SEO")}
+        onChange={() => handleCheckboxChange("Technical SEO")}
+        className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
+      />
+      Technical SEO
+    </label>
+    <label className="flex items-center text-white text-base">
+      <input
+        type="checkbox"
+        value="Social Media"
+        checked={services.includes("Social Media")}
+        onChange={() => handleCheckboxChange("Social Media")}
+        className="mr-1 text-blue-500 focus:ring-blue-500 rounded border-gray-300 bg-white"
+      />
+      Social Media
+    </label>
+  </div>
               </div>
+
+
               <div className="mb-3 lg:col-span-2 -mt-10">
                 <label
                   htmlFor="message"
