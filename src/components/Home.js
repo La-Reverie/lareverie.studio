@@ -170,7 +170,7 @@ function Home() {
               online.
             </p>
 
-              <div className="relative w-full max-w-[650px]  h-[310px] md:mr-16 transform-style: preserve-3d">
+              <div className="relative w-full md:max-w-[400px] xl:max-w-[550px] 2xl:max-w-[650px]  h-[310px] md:mr-16 transform-style: preserve-3d">
                 <div
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
