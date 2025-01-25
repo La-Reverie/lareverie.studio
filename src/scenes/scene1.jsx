@@ -1,11 +1,42 @@
 // Scene1.jsx
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF, PerspectiveCamera } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { AudioListener, Audio, AudioLoader } from 'three';
 
 const MODEL_PATH = '/webgl/statue.glb';
+
+const Butterfly = () => {
+    const wingRef = useRef();
+    
+    const position = useMemo(() => [
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10
+    ], []);
+
+    useFrame((state, delta) => {
+        const time = state.clock.getElapsedTime();
+        
+        // Movimiento base de la mariposa
+        const baseX = position[0] + Math.sin(time + position[0]) * 2;
+        const baseY = position[1] + Math.cos(time + position[1]) * 2;
+        const baseZ = position[2] + Math.sin(time + position[2]) * 2;
+
+        if (wingRef.current) {
+            // Posición del círculo
+            wingRef.current.position.set(baseX, baseY, baseZ);
+        }
+    });
+
+    return (
+        <mesh ref={wingRef}>
+            <circleGeometry args={[0.03, 32]} />
+            <meshBasicMaterial color="#ffd700" transparent opacity={0.6} side={2} />
+        </mesh>
+    );
+};
 
 const Scene1 = () => {
     const meshRef = useRef();
@@ -71,6 +102,11 @@ const Scene1 = () => {
             <spotLight position={[0, 5, 0]} intensity={40} angle={0.5} penumbra={1} />
 
             <PerspectiveCamera makeDefault position={[0, -3, 5]} fov={70} />
+
+            {/* Agregamos 20 mariposas */}
+            {Array.from({ length: 80 }).map((_, i) => (
+                <Butterfly key={i} />
+            ))}
 
             <group ref={meshRef} position={[0, 0, 0]}>
                 <primitive object={scene} dispose={null} />
