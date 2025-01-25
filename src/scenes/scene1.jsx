@@ -3,11 +3,32 @@ import { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF, PerspectiveCamera } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { AudioListener, Audio, AudioLoader } from 'three';
+
+const MODEL_PATH = '/webgl/statue.glb';
 
 const Scene1 = () => {
     const meshRef = useRef();
     const [isModelReady, setIsModelReady] = useState(false);
-    const { scene, isLoading } = useGLTF('/wegbl/statue.glb', true);
+    const { scene, isLoading } = useGLTF(MODEL_PATH, true);
+
+    useEffect(() => {
+        // Audio setup
+        const listener = new AudioListener();
+        const sound = new Audio(listener);
+        const audioLoader = new AudioLoader();
+
+        audioLoader.load('/webgl/chant.mp3', (buffer) => {
+            sound.setBuffer(buffer);
+            sound.setVolume(1.0);
+            sound.play();
+        });
+
+        return () => {
+            sound.stop();
+            sound.buffer = null;
+        };
+    }, []);
 
     useEffect(() => {
         if (scene && !isLoading) {
@@ -35,7 +56,7 @@ const Scene1 = () => {
 
     useFrame((state, delta) => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += delta * 0.5;
+            meshRef.current.rotation.y += delta * 0.1;
         }
     });
 
@@ -46,8 +67,8 @@ const Scene1 = () => {
             <color attach="background" args={['#000000']} />
             
             <ambientLight intensity={1.5} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <spotLight position={[0, 5, 0]} intensity={10} angle={0.5} penumbra={1} />
+            <directionalLight position={[5, 5, 5]} intensity={3} />
+            <spotLight position={[0, 5, 0]} intensity={40} angle={0.5} penumbra={1} />
 
             <PerspectiveCamera makeDefault position={[0, -3, 5]} fov={70} />
 
@@ -59,14 +80,15 @@ const Scene1 = () => {
 };
 
 // Método estático para precargar
+// En el método preload
 Scene1.preload = (onProgress) => {
     return new Promise((resolve) => {
         const loader = new GLTFLoader();
         
         loader.load(
-            '/img/statue.glb',
+            MODEL_PATH,
             (gltf) => {
-                useGLTF.preload('/img/statue.glb');
+                useGLTF.preload(MODEL_PATH);
                 resolve();
             },
             (xhr) => {
