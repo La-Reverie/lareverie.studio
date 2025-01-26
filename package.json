@@ -3,22 +3,36 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.20",
+    "@react-three/cannon": "^6.6.0",
+    "@react-three/drei": "^9.120.8",
+    "@react-three/fiber": "^8.17.12",
+    "@react-three/postprocessing": "^2.16.5",
     "@splinetool/react-spline": "^4.0.0",
     "@splinetool/runtime": "^1.9.28",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "dat.gui": "^0.7.9",
+    "framer-motion": "^11.18.0",
+    "gsap": "^3.12.5",
+    "html2canvas": "^1.4.1",
+    "leva": "^0.9.35",
     "react": "^18.3.1",
+    "react-burger-menu": "^3.1.0",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
     "react-scripts": "5.0.1",
+    "tailwindcss": "^3.4.17",
+    "three": "^0.171.0",
     "web-vitals": "^2.1.4"
   },
-"scripts": {
-  "start": "react-scripts start",
-  "build": "CI=false react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-},
+  "scripts": {
+    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -38,8 +52,18 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1",
-    "@babel/plugin-proposal-private-property-in-object": "^7.14.5"
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
+    "gh-pages": "^6.1.1"
   },
-  "homepage": "https://la-reverie.github.io/"
+  "homepage": "https://la-reverie.github.io/",
+  "overrides": {
+    "@mediapipe/tasks-vision": {
+      "source-map-loader": "^4.0.1"
+    }
+  },
+  "ignoreWarnings": [
+    {
+      "module": "@mediapipe/tasks-vision"
+    }
+  ]
 }
