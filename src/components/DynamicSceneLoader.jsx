@@ -8,6 +8,22 @@ const DynamicSceneLoader = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const loadingTimeoutRef = useRef(null);
+  const lastSceneIndex = useRef(null);
+
+  const getRandomScene = () => {
+    const totalScenes = 2;
+    let availableScenes = Array.from({ length: totalScenes }, (_, i) => i + 1);
+    
+    if (lastSceneIndex.current !== null) {
+      availableScenes = availableScenes.filter(index => index !== lastSceneIndex.current);
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableScenes.length);
+    const selectedScene = availableScenes[randomIndex];
+    lastSceneIndex.current = selectedScene;
+    
+    return selectedScene;
+  };
 
   const handlePressStart = () => {
     console.log('-------------------');
@@ -20,35 +36,33 @@ const DynamicSceneLoader = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       setLoadingProgress(progress);
-
+    
       if (progress < 1) {
-        loadingTimeoutRef.current = requestAnimationFrame(loadScene);
+          loadingTimeoutRef.current = requestAnimationFrame(loadScene);
       } else {
-        console.log('Loading Complete');
-        setIsTransitioning(true);
-        try {
-          const randomSceneIndex = Math.floor(Math.random() * 1) + 1;
-          console.log(`Attempting to preload Scene${randomSceneIndex}`);
-          
-          // Iniciamos la carga
-          setLoadingProgress(0.2); // Indicamos inicio de carga
-          
-          const { default: RandomScene } = await import(`../scenes/scene${randomSceneIndex}`);
-          setLoadingProgress(0.5); // Escena importada
-          
-          // Esperamos a que el modelo se precargue y actualizamos el progreso
-          await RandomScene.preload?.((progress) => {
-            setLoadingProgress(0.5 + progress * 0.5); // 50% a 100%
-          });
-          
-          console.log(`Scene${randomSceneIndex} preloaded successfully`);
-          setCurrentScene(() => RandomScene);
-          setIsTransitioning(false);
-          
-        } catch (error) {
-          console.error('Error loading scene:', error);
-          setIsTransitioning(false);
-        }
+          console.log('Loading Complete');
+          setIsTransitioning(true);
+          try {
+              const randomSceneIndex = getRandomScene();
+              console.log(`Attempting to preload Scene${randomSceneIndex}`);
+              
+              setLoadingProgress(0.2);
+              
+              const { default: RandomScene } = await import(`../scenes/scene${randomSceneIndex}`);
+              setLoadingProgress(0.5);
+              
+              await RandomScene.preload?.((progress) => {
+                  setLoadingProgress(0.5 + progress * 0.5);
+              });
+              
+              console.log(`Scene${randomSceneIndex} preloaded successfully`);
+              setCurrentScene(() => RandomScene);
+              setIsTransitioning(false);
+              
+          } catch (error) {
+              console.error('Error loading scene:', error);
+              setIsTransitioning(false);
+          }
       }
     };
 
