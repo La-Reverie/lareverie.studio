@@ -24,8 +24,9 @@ const Hero = () => {
     <div className="relative w-full h-screen">
       {/* Background Video */}
       <video
-        src="./img/video.mp4"
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
+        //src="./img/video.mp4"
+        src="http://cdn.lareverie.studio/static/lrs-bg-600.mp4"
+	className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
         autoPlay
         loop
         muted

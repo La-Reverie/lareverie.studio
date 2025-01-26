@@ -163,7 +163,7 @@ function Team() {
       name: "Bharti Batra",
       title: "Quality Assurance",
       image: bharti,
-      bio: "(coming soon)",
+      bio: "Bharti Batra is an accomplished QA Lead with experience at top agencies like Huge and Code & Theory, where she ensured the delivery of flawless digital products. She excels at designing testing frameworks, streamlining processes, and mentoring teams to achieve operational excellence. Bharti’s expertise and attention to detail drive quality in complex technical environments.",
     },
   ];
 
