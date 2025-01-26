@@ -7,26 +7,35 @@ import { AudioListener, Audio, AudioLoader } from 'three';
 
 const MODEL_PATH = '/webgl/statue.glb';
 
-const Butterfly = () => {
+const Butterfly = ({ centerPosition }) => {
     const wingRef = useRef();
     
-    const position = useMemo(() => [
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10
-    ], []);
+    const initialState = useMemo(() => ({
+        position: [
+            (Math.random() - 0.5) * 5,
+            (Math.random() - 0.5) * 5 - 3,
+            (Math.random() - 0.5) * 5
+        ],
+        speed: 0.1 + Math.random() * 0.2,
+        direction: Math.random() > 0.5 ? 1 : -1,
+        phaseOffset: Math.random() * Math.PI * 2,
+        opacityTimer: Math.random() * 1.5 // Random duration up to 1.5 seconds
+    }), []);
 
     useFrame((state, delta) => {
         const time = state.clock.getElapsedTime();
         
-        // Movimiento base de la mariposa
-        const baseX = position[0] + Math.sin(time + position[0]) * 2;
-        const baseY = position[1] + Math.cos(time + position[1]) * 2;
-        const baseZ = position[2] + Math.sin(time + position[2]) * 2;
+        const baseX = initialState.position[0] + Math.sin(time * initialState.speed + initialState.phaseOffset) * 1;
+        const baseY = initialState.position[1] + Math.sin(time * initialState.speed * 2 + initialState.phaseOffset) * 0.5;
+        const baseZ = initialState.position[2] + Math.cos(time * initialState.speed + initialState.phaseOffset) * 1;
 
         if (wingRef.current) {
-            // Posición del círculo
             wingRef.current.position.set(baseX, baseY, baseZ);
+
+            // Smooth opacity transition
+            const opacityPhase = (time % initialState.opacityTimer) / initialState.opacityTimer;
+            const smoothOpacity = Math.sin(opacityPhase * Math.PI) * 0.6; // Smooth transition using sine
+            wingRef.current.material.opacity = opacityPhase < 0.5 ? 0 : smoothOpacity;
         }
     });
 
@@ -97,15 +106,16 @@ const Scene1 = () => {
         <>
             <color attach="background" args={['#000000']} />
             
-            <ambientLight intensity={1.5} />
-            <directionalLight position={[5, 5, 5]} intensity={3} />
-            <spotLight position={[0, 5, 0]} intensity={40} angle={0.5} penumbra={1} />
+            
+            <directionalLight position={[5, 5, 5]} intensity={4} color={'#cd7f32'} />
+            <directionalLight position={[-5, 5, -5]} intensity={2} color={'#ffffff'} />
+            
 
             <PerspectiveCamera makeDefault position={[0, -3, 5]} fov={70} />
 
             {/* Agregamos 20 mariposas */}
-            {Array.from({ length: 80 }).map((_, i) => (
-                <Butterfly key={i} />
+            {Array.from({ length: 105 }).map((_, i) => (
+                <Butterfly key={i} centerPosition={[0, 0, 0]} />
             ))}
 
             <group ref={meshRef} position={[0, 0, 0]}>
