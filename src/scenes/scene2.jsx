@@ -251,30 +251,30 @@ const Tunnel = () => {
 
             switch (randomAxis) {
                 case 0:
-                    console.log("case 0");
+                    // console.log("case 0");
                     newRotation.z = Math.PI * (Math.random() * 3);
                     break;
                 case 1:
-                    console.log("case 1");
+                    // console.log("case 1");
                     newRotation.z = Math.PI * (Math.random() * 2);
                     break;
                 case 2:
-                    console.log("case 2");
+                    // console.log("case 2");
                     newRotation.z = Math.PI * (Math.random() * 1);
                     break;
                  default:
-                    console.log("case default");
-                        newRotation.z = Math.PI * (Math.random() * 2);
+                    // console.log("case default");
+                    newRotation.z = Math.PI * (Math.random() * 2);
                 break;
             }
             targetRotation.current = newRotation;
-          };
+        };
 
         const interval = setInterval(rotate, 5000);
-        rotate()
+        rotate();
 
-      return () => clearInterval(interval);
-    }, []);
+        return () => clearInterval(interval);
+    }, [rotation]); // Añadimos rotation como dependencia
     
         // Modificar el return para incluir la rotación
       return (
@@ -300,9 +300,10 @@ const Scene2 = () => {
     useEffect(() => {
         const listener = new AudioListener();
         const audioLoader = new AudioLoader();
+        const sound1 = new Audio(listener);
+        const sound2 = new Audio(listener);
         
         // Primer audio (astronaut.mp3)
-        const sound1 = new Audio(listener);
         audioLoader.load('/webgl/astronaut.mp3', (buffer) => {
             sound1.setBuffer(buffer);
             sound1.setVolume(0.5);
@@ -310,8 +311,7 @@ const Scene2 = () => {
         });
 
         // Segundo audio (falling.mp3) después de 3 segundos
-        setTimeout(() => {
-            const sound2 = new Audio(listener);
+        const timeoutId = setTimeout(() => {
             audioLoader.load('/webgl/falling.mp3', (buffer) => {
                 sound2.setBuffer(buffer);
                 sound2.setVolume(0.5);
@@ -322,6 +322,9 @@ const Scene2 = () => {
         return () => {
             sound1?.stop();
             sound1?.disconnect();
+            sound2?.stop();
+            sound2?.disconnect();
+            clearTimeout(timeoutId);
         };
     }, []);
 
@@ -333,18 +336,7 @@ const Scene2 = () => {
     );
 };
 
-// Add preload method
-Scene2.preload = async (onProgress) => {
-    const textureLoader = new TextureLoader();
-    return new Promise((resolve) => {
-        textureLoader.load('/webgl/galaxy.jpg', () => {
-            resolve();
-        });
-    });
-};
-
-// Agregar preload para el astronauta
-// Combinar los preloads en uno solo
+// Keep only this combined preload method
 Scene2.preload = async (onProgress) => {
     const [gltf] = await Promise.all([
         useGLTF.preload('/webgl/astronaut.glb'),

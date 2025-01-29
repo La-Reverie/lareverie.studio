@@ -11,7 +11,7 @@ const DynamicSceneLoader = () => {
   const lastSceneIndex = useRef(null);
 
   const getRandomScene = () => {
-    const totalScenes = 2;
+    const totalScenes = 3;
     let availableScenes = Array.from({ length: totalScenes }, (_, i) => i + 1);
     
     if (lastSceneIndex.current !== null) {
@@ -73,6 +73,7 @@ const DynamicSceneLoader = () => {
     console.log('-------------------');
     console.log('Press End');
     setIsTransitioning(true);
+
     setTimeout(() => {
       setIsPressed(false);
       setLoadingProgress(0);
@@ -103,7 +104,7 @@ const DynamicSceneLoader = () => {
       onTouchEnd={handlePressEnd}
     >
       <div className={`absolute inset-0 bg-red-400 ${currentScene ? 'z-10' : 'z-0'}`}>
-        <Canvas className="absolute inset-0">
+        <Canvas className={`absolute inset ${currentScene ? 'border-0' : 'border-4 border-transparent'}`}>
           {currentScene && createElement(currentScene)}
         </Canvas>
       </div>
