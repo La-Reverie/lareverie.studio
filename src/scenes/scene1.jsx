@@ -47,83 +47,86 @@ const Butterfly = ({ centerPosition }) => {
     );
 };
 
-const Scene1 = () => {
-    const meshRef = useRef();
-    const [isModelReady, setIsModelReady] = useState(false);
-    const { scene, isLoading } = useGLTF(MODEL_PATH, true);
+    const Scene1 = () => {
+        const meshRef = useRef();
+        const [isModelReady, setIsModelReady] = useState(false);
+        const { scene, isLoading } = useGLTF(MODEL_PATH, true);
+        const isMobile = window.innerWidth < 768;
 
-    useEffect(() => {
-        // Audio setup
-        const listener = new AudioListener();
-        const sound = new Audio(listener);
-        const audioLoader = new AudioLoader();
+        useEffect(() => {
+            // Audio setup
+            const listener = new AudioListener();
+            const sound = new Audio(listener);
+            const audioLoader = new AudioLoader();
 
-        audioLoader.load('/webgl/chant.mp3', (buffer) => {
-            sound.setBuffer(buffer);
-            sound.setVolume(1.0);
-            sound.play();
+            audioLoader.load('/webgl/chant.mp3', (buffer) => {
+                sound.setBuffer(buffer);
+                sound.setVolume(1.0);
+                sound.play();
+            });
+
+            return () => {
+                sound.stop();
+                sound.buffer = null;
+            };
+        }, []);
+
+        useEffect(() => {
+            if (scene && !isLoading) {
+                scene.rotation.set(0, 0, 0);
+                scene.position.set(0, 0, 0);
+                scene.scale.set(50, 50, 50);
+                setIsModelReady(true);
+            }
+            return () => {
+                setIsModelReady(false)
+                if (scene) {
+                    scene.traverse((child) => {
+                        if (child.isMesh) {
+                            child.geometry?.dispose();
+                            if (Array.isArray(child.material)) {
+                                child.material.forEach(material => material?.dispose());
+                            } else {
+                                child.material?.dispose();
+                            }
+                        }
+                    });
+                }
+            };
+        }, [scene, isLoading]);
+
+        useFrame((state, delta) => {
+            if (meshRef.current) {
+                meshRef.current.rotation.y += delta * 0.1;
+            }
         });
 
-        return () => {
-            sound.stop();
-            sound.buffer = null;
-        };
-    }, []);
+        if (!isModelReady) return null;
 
-    useEffect(() => {
-        if (scene && !isLoading) {
-            scene.rotation.set(0, 0, 0);
-            scene.position.set(0, 0, 0);
-            scene.scale.set(50, 50, 50);
-            setIsModelReady(true);
-        }
-        return () => {
-            setIsModelReady(false)
-            if (scene) {
-                scene.traverse((child) => {
-                    if (child.isMesh) {
-                        child.geometry?.dispose();
-                        if (Array.isArray(child.material)) {
-                            child.material.forEach(material => material?.dispose());
-                        } else {
-                            child.material?.dispose();
-                        }
-                    }
-                });
-            }
-        };
-    }, [scene, isLoading]);
+        return (
+            <>
+                <color attach="background" args={['#000000']} />
+                
+                <directionalLight position={[5, 5, 5]} intensity={4} color={'#cd7f32'} />
+                <directionalLight position={[-5, 5, -5]} intensity={2} color={'#ffffff'} />
 
-    useFrame((state, delta) => {
-        if (meshRef.current) {
-            meshRef.current.rotation.y += delta * 0.1;
-        }
-    });
+                <PerspectiveCamera 
+                    makeDefault 
+                    position={isMobile ? [-0.3, -3, 7] : [0, -3, 5]} 
+                    fov={isMobile ? 60 : 70} 
+                />
 
-    if (!isModelReady) return null;
+                {/* Agregamos 20 mariposas */}
+                {Array.from({ length: 105 }).map((_, i) => (
+                    <Butterfly key={i} centerPosition={[0, 0, 0]} />
+                ))}
 
-    return (
-        <>
-            <color attach="background" args={['#000000']} />
-            
-            
-            <directionalLight position={[5, 5, 5]} intensity={4} color={'#cd7f32'} />
-            <directionalLight position={[-5, 5, -5]} intensity={2} color={'#ffffff'} />
-            
-
-            <PerspectiveCamera makeDefault position={[0, -3, 5]} fov={70} />
-
-            {/* Agregamos 20 mariposas */}
-            {Array.from({ length: 105 }).map((_, i) => (
-                <Butterfly key={i} centerPosition={[0, 0, 0]} />
-            ))}
-
-            <group ref={meshRef} position={[0, 0, 0]}>
-                <primitive object={scene} dispose={null} />
-            </group>
-        </>
-    );
-};
+                <group ref={meshRef} position={[0, 0, 0]}>
+                    <primitive object={scene} dispose={null} />
+                </group>
+            </>
+        );
+    };
 
 // Método estático para precargar
 // En el método preload

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useMemo } from 'react';
 import { useFrame, useThree, useLoader } from '@react-three/fiber';
-import { PerspectiveCamera, useGLTF } from '@react-three/drei';
+import { PerspectiveCamera, useGLTF, useAnimations } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { TextureLoader, ShaderMaterial, AdditiveBlending, Mesh } from 'three';
 
@@ -90,12 +90,30 @@ const Scene3 = () => {
     const lightRef = useRef();
     const composerRef = useRef();
     const { gl, scene: threeScene } = useThree();
-    const { scene } = useGLTF('/webgl/principito.glb');
+    const { scene, animations } = useGLTF('/webgl/principito.glb');
+    const { actions } = useAnimations(animations, scene);
     const sunTexture = useLoader(TextureLoader, '/webgl/eso0932a.jpg');
+    const isMobile = window.innerWidth < 768;
 
-    // Add cleanup for renderer
     useEffect(() => {
+        if (scene && actions) {
+            scene.rotation.set(0, 0, 0);
+            scene.position.set(0, -0.4, 0);
+            scene.scale.set(0.5, 0.5, 0.5);
+
+            // Play all animations
+            Object.values(actions).forEach(action => {
+                if (action) action.play();
+            });
+        }
+
         return () => {
+            // Detener animaciones en cleanup
+            if (actions) {
+                Object.values(actions).forEach(action => {
+                    action.stop();
+                });
+            }
             // Clear the renderer
             gl.clear();
             gl.dispose();
@@ -108,19 +126,19 @@ const Scene3 = () => {
                 composerRef.current.dispose();
             }
         };
-    }, [gl]);
+    }, [scene, actions, sunTexture, threeScene]);
 
     const initialStarStates = useMemo(() => {
       return Array.from({ length: 300 }, () => ({
         position: [
-          (Math.random() - 0.5) * 5,
-          (Math.random() - 0.5) * 5,
-          (Math.random() - 0.5) * 2 + 48
+          (Math.random() - 0.5) * (isMobile ? 11 : 5),
+          (Math.random() - 0.5) * (isMobile ? 11 : 5),
+          (Math.random() - 0.5) * 2 + (isMobile ? 50 : 48)
         ],
-        radius: 3 + Math.random() * 2,
+        radius: 3 + Math.random() * (isMobile ? 8 : 2),
         angle: Math.random() * Math.PI * 2
       }));
-    }, []);
+    }, [isMobile]);
 
 
     useEffect(() => {
@@ -174,8 +192,8 @@ const Scene3 = () => {
             <PerspectiveCamera 
                 ref={cameraRef} 
                 makeDefault 
-                position={[0, 0, 50]} 
-                fov={45}
+                position={isMobile ? [0, 0, 65] : [0, 0, 50]} 
+                fov={isMobile ? 35 : 40}
             />
             
             <ambientLight intensity={0.5} />
@@ -196,20 +214,24 @@ const Scene3 = () => {
             </mesh>
 
             {/* Objeto GLB */}
-            <primitive 
-                ref={meshRef}
-                object={scene} 
-            />
-
-            <EffectComposer ref={composerRef}>
-                <Bloom 
-                    intensity={0.3}
-                    luminanceThreshold={0.4}
-                    luminanceSmoothing={0.9}
-                    height={300}
-                    mipmapBlur={true}
+            {scene && (
+                <primitive 
+                    ref={meshRef}
+                    object={scene} 
                 />
-            </EffectComposer>
+            )}
+
+            {!isMobile && (
+                <EffectComposer ref={composerRef}>
+                    <Bloom 
+                        intensity={0.3}
+                        luminanceThreshold={0.4}
+                        luminanceSmoothing={0.9}
+                        height={300}
+                        mipmapBlur={true}
+                    />
+                </EffectComposer>
+            )}
         </>
     );
 };
