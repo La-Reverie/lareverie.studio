@@ -177,22 +177,37 @@ function Home() {
               online.
             </p>
 
-              <div className="relative w-full md:max-w-[400px] xl:max-w-[550px] 2xl:max-w-[650px]  h-[310px] md:mr-16 transform-style: preserve-3d">
+              <div className="relative w-full md:max-w-[400px] xl:max-w-[550px] 2xl:max-w-[650px] h-[310px] md:mr-16" style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}>
                 <div
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     ref={carouselRef}
                     className="benefits-carousel"
-                    style={{ transform: `rotateY(${rotation}deg)` }}
+                    style={{ 
+                      transform: `rotateY(${rotation}deg)`, 
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 1s ease',
+                      position: 'relative',
+                      width: '100%',
+                      height: '100%'
+                    }}
                 >
                   {benefits.map((benefit, index) => (
                       <div
                           key={index}
                           className="benefit-card"
-
                           onClick={handleCarouselClick}
-                           style={{transform: `rotateY(${index * 120}deg) translateZ(150px)`}}
-                           >
+                          style={{
+                            transform: `rotateY(${index * 120}deg) translateZ(150px)`,
+                            position: 'absolute',
+                            backfaceVisibility: 'hidden',
+                            width: '100%',
+                            padding: '20px',
+                            backgroundColor: 'rgba(17, 24, 39, 0.8)',
+                            borderRadius: '8px',
+                            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)'
+                          }}
+                      >
                           <h3 className="text-2xl md:text-xl text-yellow-400 font-semibold mb-2">
                                 {benefit.title}
                             </h3>
