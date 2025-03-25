@@ -1,0 +1,42 @@
+h1 span.shadow-big {
+  transition: text-shadow 1s;
+  font-size: 7rem;
+  line-height: 7rem;
+  margin: 1em;
+  text-shadow: 0 10px 15px #00334176;
+}
+
+h1 span.shadow-big:hover {
+  text-shadow: 0 10px 15px #003341;
+  cursor: pointer;
+}
+
+.brown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #dd9742; /* Marrón */
+  z-index: 3;
+  opacity: 0; /* Inicia invisible */
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* Totalmente invisible */
+  }
+  100% {
+    opacity: 1; /* Totalmente visible */
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1; /* Comienza visible */
+  }
+  100% {
+    opacity: 0; /* Se vuelve invisible */
+  }
+}

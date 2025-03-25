@@ -1,0 +1,174 @@
+'use client'
+import React, { Suspense, useState, useRef, createElement } from 'react';
+import dynamic from 'next/dynamic';
+import { Canvas } from '@react-three/fiber';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Dynamically import scenes with no SSR
+const Scene1 = dynamic(() => import('../scenes/scene1'), { ssr: false });
+const Scene2 = dynamic(() => import('../scenes/scene2'), { ssr: false });
+const Scene3 = dynamic(() => import('../scenes/scene3'), { ssr: false });
+
+const scenes = {
+  scene1: Scene1,
+  scene2: Scene2,
+  scene3: Scene3,
+};
+
+const DynamicSceneLoader = ({ sceneName }) => {
+  const [isPressed, setIsPressed] = useState(false);
+  const [currentScene, setCurrentScene] = useState(null);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const loadingTimeoutRef = useRef(null);
+  const lastSceneIndex = useRef(null);
+
+  // If sceneName is provided, render that specific scene
+  if (sceneName) {
+    const SceneComponent = scenes[sceneName];
+    
+    if (!SceneComponent) {
+      return <div>Scene not found</div>;
+    }
+
+    return (
+      <div style={{ width: '100%', height: '100%' }}>
+        <Canvas>
+          <Suspense fallback={null}>
+            <SceneComponent />
+          </Suspense>
+        </Canvas>
+      </div>
+    );
+  }
+
+  // Otherwise, use the random scene loader functionality
+  const getRandomScene = () => {
+    const totalScenes = 3;
+    let availableScenes = Array.from({ length: totalScenes }, (_, i) => i + 1);
+    
+    if (lastSceneIndex.current !== null) {
+      availableScenes = availableScenes.filter(index => index !== lastSceneIndex.current);
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableScenes.length);
+    const selectedScene = availableScenes[randomIndex];
+    lastSceneIndex.current = selectedScene;
+    
+    return selectedScene;
+  };
+
+  const handlePressStart = () => {
+    console.log('-------------------');
+    console.log('Press Start');
+    setIsPressed(true);
+    const startTime = Date.now();
+    const duration = 2000;
+
+    const loadScene = async () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setLoadingProgress(progress);
+    
+      if (progress < 1) {
+          loadingTimeoutRef.current = requestAnimationFrame(loadScene);
+      } else {
+          console.log('Loading Complete');
+          setIsTransitioning(true);
+          try {
+              const randomSceneIndex = getRandomScene();
+              console.log(`Attempting to preload Scene${randomSceneIndex}`);
+              
+              setLoadingProgress(0.2);
+              
+              const { default: RandomScene } = await import(`../scenes/scene${randomSceneIndex}`);
+              setLoadingProgress(0.5);
+              
+              await RandomScene.preload?.((progress) => {
+                  setLoadingProgress(0.5 + progress * 0.5);
+              });
+              
+              console.log(`Scene${randomSceneIndex} preloaded successfully`);
+              setCurrentScene(() => RandomScene);
+              setIsTransitioning(false);
+              
+          } catch (error) {
+              console.error('Error loading scene:', error);
+              setIsTransitioning(false);
+          }
+      }
+    };
+
+    loadingTimeoutRef.current = requestAnimationFrame(loadScene);
+  };
+
+  const handlePressEnd = () => {
+    console.log('-------------------');
+    console.log('Press End');
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setIsPressed(false);
+      setLoadingProgress(0);
+      
+      if (currentScene) {
+        console.log('Clearing current scene');
+        setCurrentScene(null);
+      }
+
+      setTimeout(() => {
+        console.log('Transition end');
+        setIsTransitioning(false);
+      }, 300);
+    }, 300);
+
+    if (loadingTimeoutRef.current) {
+      console.log('Canceling animation frame');
+      cancelAnimationFrame(loadingTimeoutRef.current);
+    }
+  };
+
+  return (
+    <div 
+      className="relative w-full h-screen"
+      onMouseDown={handlePressStart}
+      onMouseUp={handlePressEnd}
+      onTouchStart={handlePressStart}
+      onTouchEnd={handlePressEnd}
+    >
+      <div className={`absolute inset-0 bg-red-400 ${currentScene ? 'z-10' : 'z-0'}`}>
+        <Canvas className={`absolute inset ${currentScene ? 'border-0' : 'border-4 border-transparent'}`}>
+          {currentScene && createElement(currentScene)}
+        </Canvas>
+      </div>
+
+      <AnimatePresence>
+        {isTransitioning && (
+          <motion.div 
+            className="absolute inset-0 bg-white pointer-events-none z-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {isPressed && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.div 
+            className="h-1 bg-white"
+            initial={{ width: "0%" }}
+            animate={{ width: `${loadingProgress * 100}%` }}
+            transition={{ duration: 0, ease: "linear" }}
+            style={{
+              maxWidth: "80vw",
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default DynamicSceneLoader;
