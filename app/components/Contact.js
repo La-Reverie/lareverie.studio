@@ -150,7 +150,7 @@ function Contact() {
                   type="text"
                   id="Businessname"
                   value={Businessname}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setBusinessname(e.target.value)}
                   className={`w-full p-3 rounded-sm bg-white text-gray-800 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition-all duration-200 text-2xl ${
                     errors.Businessname ? "border-red-500" : ""
                   }`}

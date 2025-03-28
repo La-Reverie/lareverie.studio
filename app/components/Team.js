@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef, useEffect, useState } from "react";
-import Image from "next/image";
+// Cambiamos la forma de importar las imágenes
 import jon from "../../public/img/team/jon.jpg";
 import javier from "../../public/img/team/javier.jpg";
 import jonglass from "../../public/img/team/jon-glass.jpg";
@@ -113,11 +113,11 @@ function TeamMember({ member }) {
         >
             <div className="relative">
                 <div className="w-full h-64 relative">
-                    <Image
-                        src={member.image}
+                    {/* Reemplazamos el componente Image con una etiqueta img estándar */}
+                    <img
+                        src={member.imagePath}
                         alt={member.name}
-                        fill
-                        className="object-cover object-center"
+                        className="object-cover object-center w-full h-full"
                     />
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
@@ -149,25 +149,29 @@ function Team() {
     {
       name: "Jon Caveman",
       title: "Founder",
-      image: jon,
+      image: jon, // Mantenemos esta referencia para compatibilidad
+      imagePath: "/img/team/jon.jpg", // Añadimos la ruta directa
       bio: "All roads lead to here. Jon's goal is to preserve what gets lost between big ideas and technological limitations. Jon infuses more than three decades of coding experience into his creative process. With a career spanning advertising, big tech, and a stint as a rock radio DJ, Jon's imagination knows no limit.",
     },
     {
       name: "Javier Cabrera",
       title: "Co-founder, Design & Development",
       image: javier,
+      imagePath: "/img/team/javier.jpg",
       bio: "Javier transforms whimsical ideas into digital experiences. His multifaceted background in writing, illustration, and web development allow him to combine artistic vision with technical proficiency and lead our most innovative design projects.",
     },
     {
       name: "Kennedy Vasquez",
       title: "Digital Marketing",
       image: kennedy,
+      imagePath: "/img/team/kennedy.jpg",
       bio: "Kennedy is a digital native and his passion is connecting people and ideas. From online community management for a newspaper in Ciudad Guayana, Venezuela to digital marketing at ad agencies in Buenos Aires, Argentina, Kennedy brings the perfect combination of marketing and technical know-how to the La Reverie team. When he's not brainstorming the next big campaign, Kennedy enjoys staying up-to-date with the latest digital trends and fostering connections in the online space.",
     },
     {
       name: "Bharti Batra",
       title: "Quality Assurance",
       image: bharti,
+      imagePath: "/img/team/bharti.jpg",
       bio: "(coming soon)",
     },
   ];
@@ -177,22 +181,26 @@ function Team() {
             name: "Lorenzo Castillo",
             title: "Co-founder, Engineering",
             image: lorenzo,
+            imagePath: "/img/team/lorenzo.jpg",
             bio: "Lorenzo started as a self-taught programmer while studying pre-med. By the time he graduated, Lorenzo had a degree in computer science and was ready to embark on a 10-year career as a software engineer, working at Google Search, LinkedIn and Airbnb. He holds a patent in augmented reality systems for user-controlled movement of wireless-connected objects. Ask Lorenzo about the home he built for himself in South Florida.",
         },
         {
             name: "Jon Glass",
             title: "Co-founder, Innovation",
             image: jonglass,
+            imagePath: "/img/team/jon-glass.jpg",
             bio: "Jon Glass is a software engineer with an artistic heart. He built a diverse skill set as a professional skateboard photographer, game coder and painter. Jon approaches development with artistic sensibility and an eye for detail.",
         },
         {
             name: "Bhaskar Ch",
             title: "Product Management",
             image: bhaskar,
+            imagePath: "/img/team/bhaskar.jpg",
             bio: "Bhaskar is a Business Analyst turned Product Manager with an MBA from Wayne State University. He is adept at aligning business objectives with technical execution, levering his analytical skills to drive impactful product strategies. Bhaskar's expertise lies in transforming complex business requirements into actionable roadmaps for product development.",
         },
     ];
 
+    // El resto del componente Team permanece igual
     return (
         <section id="team" className="bg-gray-900 relative w-full min-h-screen py-16">
             <div id="team" className="anchor absolute -top-24" aria-hidden="true"></div>
