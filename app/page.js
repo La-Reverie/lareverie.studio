@@ -15,9 +15,9 @@ import Footer from './components/Footer';
 export default function Page() {
   return (
     <div className="App">
-      <div className="w-full h-screen">
+      {/* <div className="w-full h-screen"> */}
         {/* <DynamicSceneLoader /> */}
-      </div>
+      {/* </div> */}
       <Frame />
       <Header />
       <Hero />

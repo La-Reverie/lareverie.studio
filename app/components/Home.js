@@ -157,7 +157,7 @@ function Home() {
       </div>
       <div className="relative container mx-auto px-6 py-16 sm:px-12 sm:py-24 lg:py-32 z-10">
         <motion.div
-          className="flex flex-col md:flex-row md:justify-between mt-10"
+          className="flex flex-col md:flex-row md:justify-between mt-10 "
           initial="hidden"
           whileInView="visible"
           viewport={{
@@ -177,7 +177,7 @@ function Home() {
               online.
             </p>
 
-              <div className="relative w-full md:max-w-[400px] xl:max-w-[550px] 2xl:max-w-[650px] h-[310px] md:mr-16" style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}>
+              <div className="relative scale-90 w-full md:max-w-[400px] xl:max-w-[550px] 2xl:max-w-[650px] h-[310px] md:mr-16" style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}>
                 <div
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}

@@ -1,8 +1,8 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  devIndicators: false,
+  devIndicators: {
+    position: 'bottom-right',
+  },
   images: {
     domains: ['la-reverie.github.io'],
   },
@@ -20,6 +20,8 @@ const nextConfig = {
     });
     return config;
   },
+  // Remove the experimental.mdxRs property
 }
 
-module.exports = nextConfig
+// Remove the withMDX wrapper
+module.exports = nextConfig;

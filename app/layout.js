@@ -1,4 +1,6 @@
-import './globals.css'
+import './global.css'
+import './index.css';
+import './App.css';
 
 export const metadata = {
   title: 'La Reverie Studio',
@@ -12,3 +14,6 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
+
+// In your existing layout imports
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
