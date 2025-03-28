@@ -11,6 +11,11 @@
 # production
 /build
 
+# house design assets
+/clients/housedesign/public/videos/
+/clients/housedesign/public/assets/
+/clients/housedesign/public/models/
+
 # misc
 .DS_Store
 .env.local
