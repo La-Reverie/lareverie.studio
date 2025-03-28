@@ -1,24 +1,26 @@
 module.exports = {
   content: [
-    "./app/**/*.{js,jsx,ts,tsx}",
-    "./pages/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
-      fontFamily: {
-        bebas: ['Bebas Neue', 'sans-serif'],
-        sans: ['Source Sans 3', 'sans-serif'],
+      animation: {
+        'gradient-x': 'gradient-x 5s ease infinite',
       },
-      fontSize: {
-        'blog-title': '3.5rem',
-        'blog-heading': '2.5rem',
-        'blog-text': '1.25rem',
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
       },
-      lineHeight: {
-        'blog': '1.5',
-      }
     },
   },
   plugins: [],
-};
+}

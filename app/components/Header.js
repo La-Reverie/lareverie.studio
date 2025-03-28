@@ -1,14 +1,14 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { bubble as Menu } from "react-burger-menu";
-// Remove this import
-//import logo from "../../public/img/logo-primary2.svg";
 import { IoClose } from "react-icons/io5";
 import { TbDotsVertical } from "react-icons/tb";
-
+import { usePathname } from 'next/navigation';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   const handleStateChange = (state) => {
     setIsMenuOpen(state.isOpen);
@@ -21,7 +21,17 @@ function Header() {
   const scrollToSection = (e) => {
     e.preventDefault();
     const target = e.target;
-    const element = document.querySelector(target.getAttribute("href"));
+    const href = target.getAttribute("href");
+    
+    // If we're not on the homepage, navigate to homepage first
+    if (!isHomePage && href.startsWith('#')) {
+      window.location.href = '/' + href;
+      closeMenu();
+      return;
+    }
+    
+    // If we're on the homepage, just scroll to the section
+    const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({
         behavior: "smooth",
@@ -35,7 +45,7 @@ function Header() {
       <h1 className="m-0 flex-grow text-center font-dancing-script text-2xl py-2">
         <img
           className="h-10 transition-all duration-300 sm:h-12 max-w-96 mx-auto"
-          src="/img/logo-primary2.svg" // Update path to reference public directory
+          src="/img/logo-primary2.svg"
           alt="La Reverie Studio"
         />
       </h1>
@@ -99,6 +109,13 @@ function Header() {
             href="#team"
           >
             The Team
+          </a>
+
+          <a
+            href="/blog"
+            className="menu-item block text-xl md:text-4xl font-semibold text-gray-200 py-3 md:py-5 opacity-60 hover:opacity-100 transition-all duration-150"
+          >
+            Blog
           </a>
           
           <a

@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Sales from './components/Sales';
 import TheStudio from './components/TheStudio';
 import Team from './components/Team';
+import BlogSection from './components/BlogSection'; // Add this import
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -25,6 +26,7 @@ export default function Page() {
       <Sales />
       <TheStudio />
       <Team />
+      <BlogSection /> {/* Add this component */}
       <Contact />
       <Footer />
     </div>
